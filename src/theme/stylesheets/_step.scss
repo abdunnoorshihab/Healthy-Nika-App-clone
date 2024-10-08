@@ -1,0 +1,31 @@
+@import'../../theme/stylesheets/variables';
+.footer-step {
+  //position: fixed;
+  width: 100%;
+  //bottom: 0;
+  //left: 0;
+  background-color: #fff;
+
+  .footer-step-child {
+    ul {
+      margin: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //gap: 4px;
+      padding-block: 8px;
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 16px;
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

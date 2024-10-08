@@ -1,0 +1,110 @@
+<div class="profile-list-part-card" [class.profile-list-part-card-man]="data?.gender === 'male'">
+  <h3>PROFILE SUMMARY: {{ data?.userId }}</h3>
+
+  <div class="profile-list-part-card-top">
+    <div class="profile-list-part-card-top-left">
+      <ul>
+        <li>
+          <h4>
+            <span>Age: </span>
+            <small>{{ data?.dateOfBirth | years }}</small>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <span>Height: </span>
+            <small>{{ data?.height | splitAdd: '.' }}</small>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <span>Ethnicity: </span>
+            <small>{{ data?.ethnicity }}</small>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <span>Country: </span>
+            <small>{{ data?.countryOfResidence }} </small>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <span>Region: </span>
+            <small>{{ data?.cityOfResidence }}</small>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <span>Profession: </span>
+            <small>{{ data?.profession === 'Other' ?  (data?.otherProfession ? data?.otherProfession : 'N/A') : data?.profession}}</small>
+          </h4>
+        </li>
+      </ul>
+    </div>
+
+    <div class="profile-list-part-card-top-right" *ngIf="!data?.profileImg?.length">
+      <img class="default-img"
+        [src]="data?.gender ==='female' ? './assets/images/brand/png/on2.png' : './assets/images/brand/png/on1.png'"
+        alt="profile-image"
+      />
+    </div>
+
+    <div class="profile-list-part-card-top-right" *ngIf="data?.profileImg?.length">
+      <img class="user-image"
+        [src]="data?.profileImg? data?.profileImg[0] : 'https://eit.europa.eu/sites/default/files/cristina_aleixendri_portrait_-_vertical_0.jpg'"
+        alt="profile-image"
+      />
+    </div>
+  </div>
+
+  <div class="profile-list-part-card-bottom">
+    <h4>
+      <small>
+        <span>About me: </span>
+        {{ data?.aboutMe }}
+      </small>
+    </h4>
+
+    <ul *ngIf=" data?.pauseStatus !== 'Pause' && !isHide ">
+      <li>
+
+        <button *ngIf="!isLoader" (click)="onProfileHide(data?._id, $event)"
+                type="button">{{ isHide ? 'Unhide' : 'Hide' }}
+        </button>
+        <button *ngIf="isLoader" style="display: flex; justify-content: center;padding: 5px" type="button"><span
+          class="circle"></span></button>
+      </li>
+      <li>
+        <button type="button" [routerLink]="['/profile-details',data?.userId]">Full Profile</button>
+      </li>
+      <li >
+
+        <button *ngIf="!isLoaderRequest && getRequestSent(data) !== true && getRequest(data?._id)?.status !=='Pending' && getRequest(data?._id)?.status !=='Success' && getRequestsTo(data?._id)?.status !=='Success'" type="button" (click)="onRequest($event, data)">{{isUnsuccessUser? 'Request Again': isExpiredUser? 'Request Again':'Request Match'}}</button>
+        <button *ngIf="isLoaderRequest" >Please wait...</button>
+        <button *ngIf="!isLoaderRequest && getRequest(data?._id) && getRequest(data?._id)?.status==='Pending'" style="background-color: #fa8351">Awaiting response</button>
+        <button *ngIf="!isLoaderRequest && getRequest(data?._id) && getRequest(data?._id)?.status==='Success'" style="background-color: rgb(121, 194, 11)">Successful match</button>
+<!--        <button *ngIf="!isLoaderRequest && isRequestUser && getRequest(data?._id) && getRequest(data?._id)?.status==='Pending'" style="background-color: #fa8351">Data response</button>-->
+<!--        <button *ngIf="!isLoaderRequest && getRequest(data?._id) && getRequest(data?._id)?.status==='Success'"  style="background: rgb(121, 194, 11);">Successful matches</button>-->
+<!--        <button *ngIf="!isLoaderRequest && getRequest(data?._id) && getRequest(data?._id)?.status==='Unsuccess'" style="background: red">Unsuccessful matches</button>-->
+<!--        <button *ngIf="!isLoaderRequest && getRequestSent(data)" style="background: red">{{ getRequestSent(data) }}Awaiting matches</button>-->
+<!--        <button *ngIf="!isLoaderRequest && getRequestReceived(data)" style="background: red">{{ getRequestReceived(data) }} request matches</button>-->
+
+        <button *ngIf="getRequestSent(data) === true" style="background: rgb(121, 194, 11)" (click)="onAcceptAndIgnoreRequest(getRequestsTo(data?._id)?._id,'Accepted')">Accept match</button>
+        <button *ngIf="getRequestsTo(data?._id)?.status==='Success'"   style="background-color: rgb(121, 194, 11)">Successful match</button>
+<!--        <button *ngIf="getRequestReceived(data) === true" style="background: red">{{ getRequestReceived(data) }} getRequestReceivedt matches</button>-->
+      </li>
+
+    </ul>
+    <ul *ngIf="  data?.pauseStatus !== 'Pause' && isHide" class="unhide_button">
+
+      <button (click)="onProfileUnHide(data?._id,$event)" type="button">{{ isHide ? 'Unhide' : 'Hide' }}</button>
+      <button *ngIf="isLoader" style="display: flex; justify-content: center;padding: 5px" type="button"><span
+        class="circle"></span></button>
+    </ul>
+    <ul *ngIf="data?.pauseStatus === 'Pause'" class="pause_button">
+
+      <button type="button">This account has paused their profile. Try again later.</button>
+    </ul>
+  </div>
+</div>

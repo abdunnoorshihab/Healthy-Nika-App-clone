@@ -1,0 +1,32 @@
+@import '../../../../theme/stylesheets/variables';
+
+.view-box{
+    height:fit-content;
+    background: white;
+    width: 230px;
+    //margin: 10px auto;
+    padding: 25px 35px;
+    border-radius: 10px;
+    box-shadow: $box-shadow-primary;
+    position: relative;
+    //top: 150px;
+    .close{
+        position: absolute;
+        z-index: 999;
+        border-radius: 20px;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        i{
+          font-size: 18px;
+        }
+      }
+    h3 {
+        font-family: $font-en-poppins;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+        text-align: center;
+        margin-bottom: 5px !important;
+    }
+}

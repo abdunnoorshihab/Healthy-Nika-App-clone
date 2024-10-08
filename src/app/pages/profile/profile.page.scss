@@ -1,0 +1,210 @@
+@import'../../../theme/stylesheets/variables';
+@import "../../../theme/stylesheets/loading";
+ion-header {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ion-toolbar {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* --- profile-list-header --- */
+.profile-list-header {
+    background-color: $color-primary;
+    padding: 10px 10px;
+}
+
+.header-content {
+    .back-button {
+        min-width: 22px;
+        max-width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border-radius: 100%;
+
+
+        i {
+            color: #c40a5e;
+            font-size: 15px;
+        }
+    }
+}
+
+/* --- profile-list-header --- */
+.profile-list-header {
+    background-color: $color-primary;
+    padding: 10px 10px;
+}
+
+/* --- profile-list-header-child --- */
+.profile-list-header-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .profile-list-header-left {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+
+        img {
+            max-width: 45px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: $font-en-montserrat;
+            font-size: 17px;
+            color: #fff;
+            font-weight: 600;
+
+        }
+    }
+
+    .profile-list-header-right {
+      position: relative;
+        button {
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+
+            img {
+                max-width: 20px;
+            }
+        }
+
+
+      .count {
+        position: absolute;
+        left: -14px;
+        top: -13px;
+        background: yellow;
+        padding: 10px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+}
+
+/* --- profile-list --- */
+.profile-list {
+    // background-color: #fff;
+  padding: 35px 0;
+}
+
+.profile-title {
+    //margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+
+    p {
+        font-family: $font-en-montserrat;
+        font-size: 19px;
+        font-weight: 700;
+        color: rgb(62, 62, 168);
+    }
+}
+
+.user-list-area-bottom {
+    max-width: 220px;
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.user-list-area-bottom-card {
+    height: 220px;
+    width: 100%;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::after {
+      content: "";
+      position: absolute;
+      //width: 115px;
+      //height: 107px;
+      width: 97%;
+      height: 100%;
+      //background-color: #fff;
+      border-radius: 50%;
+      //top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      //filter: blur(7px);
+    }
+
+    img {
+        filter: blur(15px);
+        border-radius: 12px;
+        border: 2px solid rgb(62, 62, 168);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.image-info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    p {
+      font-family: $font-en-montserrat;
+      font-size: 15px;
+      font-weight: 700;
+    }
+}
+
+.profile-description {
+    max-width: 318px;
+    margin: auto;
+    margin-top: 20px;
+
+    p {
+        font-family: $font-en-montserrat;
+        line-height: 20px;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+.request-match {
+    max-width: 216px;
+    width: 100%;
+    margin: auto;
+    margin-top: 37px;
+    background-color: #c3075f;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+
+    button {
+        border: none;
+        outline: none;
+        padding: 15px 15px;
+        background-color: transparent;
+        border-radius: 10px;
+        color: #ffffff;
+    }
+}
+
+// swiper disable button by default class
+.swiper-button-disabled {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}

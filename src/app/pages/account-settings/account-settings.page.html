@@ -1,0 +1,62 @@
+
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+           <span class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>Account settings</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="container">
+    <!-- Start!account-password-security -->
+    <app-password-and-security [userData]="user"></app-password-and-security>
+    <!-- End!account-password-security -->
+
+    <!-- Start!hidden-accounts -->
+    <app-hidden-accounts [userData]="user"></app-hidden-accounts>
+    <!-- End!hidden-accounts -->
+
+    <!-- Start!pause-my-account -->
+    <app-pause-my-account [userData]="user"></app-pause-my-account>
+    <!-- End!pause-my-account -->
+
+    <!-- Start!permanently-delete-my-account -->
+    <app-delete-my-account></app-delete-my-account>
+    <!-- End!permanently-delete-my-account -->
+</div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

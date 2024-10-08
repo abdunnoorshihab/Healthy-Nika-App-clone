@@ -1,0 +1,378 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="registration-area" id="registrationArea">
+    <!-- <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span routerLink="/registration1">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div> -->
+
+    <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+      <div class="container max-content">
+        <div class="registration-main">
+          <div class="form">
+            <div class="personal-parent-phone" >
+              <div class="form-field form-field-name" >
+                <label>Parent’s Mobile Number</label>
+                <p *ngIf="prevData?.gender === 'female'">
+                  Wali for females
+                </p>
+<!--                <p *ngIf="prevData?.gender === 'male'">-->
+<!--                  Wali for male’s-->
+<!--                </p>-->
+                <div
+                  class="phone-number-main"
+                  [class]="dataForm.get('parentPhone').touched && dataForm.get('parentPhone').invalid ? 'invalid':''"
+                >
+                  <div class="phone-number-select" [matMenuTriggerFor]="menu">
+                    <img
+                      [src]="getSingleCountry?.image"
+                      alt="flag"
+                    />
+                    <p>
+                      <span> ({{getSingleCountry?.dial_code}}) </span>
+                      <small>
+                        <i class="fa-solid fa-sort-down"></i>
+                      </small>
+                    </p>
+                  </div>
+
+                  <input
+                    style="margin-left: 5px;"
+                    formControlName="parentPhone"
+                    type="tel"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+
+              <div class="form-field form-field-parent-phone">
+                <label>Parent’s Email Address</label>
+                <input
+                  [class]="dataForm.get('parentEmail').touched && dataForm.get('parentEmail').invalid ? 'invalid':''"
+                  formControlName="parentEmail"
+                  type="email"
+                  placeholder="Enter email address"
+                />
+              </div>
+            </div>
+
+
+<!--            <div class="form-field" *ngIf="prevData?.gender === 'female'">-->
+<!--              <label>Phone number of parent (wali for females)</label>-->
+<!--              <input-->
+<!--                [class]="dataForm.get('parentPhone').touched && dataForm.get('parentPhone').invalid ? 'invalid':''"-->
+<!--                formControlName="parentPhone"-->
+<!--                type="text"-->
+<!--                placeholder="Wali phone number (females)"-->
+<!--              />-->
+<!--            </div>-->
+
+            <div class="form-field padding">
+              <label>Date of Birth</label>
+              <button
+                class="input-type-btn"
+                type="button"
+                id="open-modal"
+                [class]="dataForm.get('dateOfBirth')?.touched && dataForm.get('dateOfBirth')?.invalid ? 'invalid' : ''"
+              >
+                {{dataForm.value['dateOfBirth'] ?
+                (dataForm.value['dateOfBirth'] | date : 'mediumDate') : 'Select your date of birth'}}
+                <i class="fa-solid fa-sort-down"></i>
+              </button>
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('dateOfBirth')?.touched && dataForm.get('dateOfBirth')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="form-field padding">
+              <label>Height (in feet)</label>
+<!--              <div class="select-btn1">-->
+<!--                <button type="button" ><i class="fa fa-caret-down"></i></button>-->
+<!--              </div>-->
+              <ion-list class="custom-list">
+                <ion-item class="custom-item"
+                          [class]="dataForm.get('height')?.touched && dataForm.get('height')?.invalid ? 'invalid-item' : ''">
+                  <ion-select class="arrow-container " interface="action-sheet" formControlName="height"
+                              placeholder="Select your height">
+                    <ion-select-option *ngFor="let data of heightType" [value]="data.value">{{ data.viewValue }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('height')?.touched && dataForm.get('height')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="form-field padding">
+              <label>Ethnicity</label>
+              <app-searchable-select [selectedValue]="ethincitySelected" [items]="ethincity" [holdItems]="ethincity"
+                                     [fieldTitle]="'Select your ethnicity'" [itemTextField]="'name'"
+                                     (onChange)="onEthnicityChange($event)" ></app-searchable-select>
+
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('ethnicity')?.touched && dataForm.get('ethnicity')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="radio-field padding">
+              <p>Are you multi-ethnic?</p>
+
+              <div class="radio-field-main">
+                <div class="mat-radio">
+                  <label for="multiEthnic">
+                    <input
+                      formControlName="multiEthnic"
+                      id="multiEthnic"
+                      type="radio"
+                      name="multiEthnic"
+                      value="yes"
+                      checked
+                    />
+                    <span>Yes</span>
+                  </label>
+                  <label for="multiEthnic1">
+                    <input
+                      id="multiEthnic1"
+                      formControlName="multiEthnic"
+                      type="radio"
+                      name="multiEthnic"
+                      value="no"
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field padding" *ngIf="dataForm?.value?.multiEthnic === 'yes'">
+              <label>Secondary Ethnicity</label>
+              <app-searchable-select [selectedValue]="secEthincitySelected" [items]="ethincity" [holdItems]="ethincity"
+                                     [fieldTitle]="'Select your ethnicity'" [itemTextField]="'name'"
+                                     (onChange)="onEthnicityChangeSecond($event)"></app-searchable-select>
+
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('secondEthnicity')?.touched && dataForm.get('secondEthnicity')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+<!--            <div class="select-btn padding" [matMenuTriggerFor]="menu1">-->
+<!--              <button type="button">-->
+<!--                {{ getSingleNationality?.name || 'Select an option' }}-->
+<!--                <i [class]="'fa fa-caret-down'"></i></button>-->
+<!--            </div>-->
+
+
+
+            <div class="form-field form-field-name padding">
+              <label>Nationality</label>
+              <p>(Your legal citizenship)</p>
+              <app-searchable-select
+                [selectedValue]="nationalitySelected"
+                [items]="nationality"
+                [holdItems]="nationality"
+                [fieldTitle]="'Select your nationality'"
+                [itemTextField]="'name'"
+                (onChange)="onNationalityChange($event)"
+              ></app-searchable-select>
+
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('cityzenShip')?.touched && dataForm.get('cityzenShip')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="form-field-grid padding">
+              <div class="form-field">
+                <label>Country of Residence</label>
+                <app-searchable-select
+                  [selectedValue]="countrySelected"
+                  [items]="countrys"
+                  [holdItems]="countrys"
+                  [fieldTitle]="'Select country'"
+                  [itemTextField]="'name'"
+                  (onChange)="onCountryChange($event)"
+                ></app-searchable-select>
+
+                <div
+                  class="invalid-text"
+                  *ngIf="dataForm.get('countryOfResidence')?.touched && dataForm.get('countryOfResidence')?.invalid"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+
+<!--              <div class="form-field">-->
+<!--                <label>Region</label>-->
+<!--                <app-searchable-select-->
+<!--                  [selectedValue]="citySelected"-->
+<!--                  [items]="cities"-->
+<!--                  [holdItems]="cities"-->
+<!--                  [fieldTitle]="'Select region'"-->
+<!--                  [itemTextField]="null"-->
+<!--                  (onChange)="onCityChange($event)">-->
+<!--                </app-searchable-select>-->
+<!--                <div-->
+<!--                  class="invalid-text"-->
+<!--                  *ngIf="dataForm.get('cityOfResidence')?.touched && dataForm.get('cityOfResidence')?.invalid"-->
+<!--                >-->
+<!--                  <span>This field is required</span>-->
+<!--                </div>-->
+<!--              </div>-->
+
+              <div class="form-field">
+                <label>Region</label>
+                <app-searchable-select
+                  [selectedValue]="dataForm.get('cityOfResidence').value"
+                  [items]="cities"
+                  [holdItems]="cities"
+                  [fieldTitle]="'Select region'"
+                  [itemTextField]="null"
+                  (onChange)="onCityChange($event)"
+                ></app-searchable-select>
+
+                <div class="invalid-text" *ngIf="dataForm.get('cityOfResidence').touched && dataForm.get('cityOfResidence').invalid">
+                  <span>This field is required</span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div>
+            <div class="sub-btn padding" style="margin-top: 15px">
+              <button type="submit">Next</button>
+            </div>
+
+            <div class="footer-step">
+              <div class="container">
+                <div class="footer-step-child">
+                  <ul>
+                    <li>
+                      <i class="fa-solid fa-heart"></i>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-heart"></i>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-heart"></i>
+                    </li>
+                    <li>
+                      <i class="fa-regular fa-heart"></i>
+                    </li>
+                    <li>
+                      <i class="fa-regular fa-heart"></i>
+                    </li>
+                    <li>
+                      <i class="fa-regular fa-heart"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- END! footer-step -->
+  </div>
+
+  <div class="form-datetime">
+    <ion-datetime-button style="display: none" datetime="datetime"></ion-datetime-button>
+    <ion-modal trigger="open-modal" [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"  presentation="date" [preferWheel]="true" [showDefaultButtons]="true"
+                      (ionChange)="onDateChange($event)"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+<!--  <div class="form-datetime">-->
+<!--    <ion-datetime-button style="display: none" datetime="datetime"></ion-datetime-button>-->
+<!--    <ion-modal trigger="open-modal" [keepContentsMounted]="true">-->
+<!--      <ng-template>-->
+<!--        <ion-datetime-->
+<!--          id="datetime"-->
+<!--          presentation="date"-->
+<!--          [preferWheel]="true"-->
+<!--          [showDefaultButtons]="true"-->
+<!--          [min]="minDate"-->
+<!--          (ionChange)="onDateChange($event)"-->
+<!--        ></ion-datetime>-->
+<!--      </ng-template>-->
+<!--    </ion-modal>-->
+<!--  </div>-->
+<!--  <mat-menu #menu1="matMenu" class="mat-menu-login">-->
+<!--    <div class="search-area">-->
+<!--      <input class="input-grey-rounded" placeholder="Search Country or Code" [(ngModel)]="searchQuery" (click)="$event.stopPropagation()" />-->
+<!--    </div>-->
+<!--    <ng-container *ngFor="let data of filteredData">-->
+<!--      <button mat-menu-item (click)="onGetSingleNationality(data)">-->
+<!--        <div class="login-flag">-->
+<!--&lt;!&ndash;          <div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <img [src]="data?.image | safeUrl" [alt]="data?.name" />&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--          <div>-->
+<!--            <span style="color: #000000">{{ data?.name }}</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </button>-->
+<!--    </ng-container>-->
+<!--  </mat-menu>-->
+
+  <mat-menu #menu="matMenu" class="mat-menu-login">
+    <div class="search-area">
+      <input class="input-grey-rounded" placeholder="Search Country or Code" [(ngModel)]="searchQuery" (click)="$event.stopPropagation()" />
+    </div>
+    <ng-container *ngFor="let data of filteredCountryData">
+      <button mat-menu-item (click)="onGetSingleCountry(data)">
+        <div class="login-flag">
+          <div>
+            <img [src]="data?.image | safeUrl" [alt]="data?.name" />
+          </div>
+          <div>
+            <span style="color: #000000">/ {{ data?.name }}</span>
+          </div>
+        </div>
+      </button>
+    </ng-container>
+  </mat-menu>
+</ion-content>

@@ -1,0 +1,192 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="registration-area">
+
+
+    <div>
+      <div class="container">
+        <div class="registration-main">
+          <div class="registration-main-top">
+            <h2>Choose your price plan:</h2>
+
+            <p>
+              There is a <b>one-time</b> joining fee of £10 to maintain the
+              quality of our database.
+              <br />
+              <br />
+              While accepting match requests is <b>free</b>, in order to request
+              another profile you will be required to purchase
+              <b>match credits</b>. This is to ensure that members engaging with
+              your profile are serious and genuinely interested.
+              <br />
+              <br />
+              Please select from the following packages (note: you will be able
+              to top-up match credits in-app).
+            </p>
+
+            <div class="registration-main-middle">
+              <div class="radio-field">
+                <div class="radio-field-main">
+                  <div class="mat-radio">
+                    <label for="one">
+                      <input
+                        id="one"
+                        [(ngModel)]="selectAmount"
+                        type="radio"
+                        name="price"
+                        [value]="10"
+                        checked
+                      />
+                      <span class="radio-span" style="padding-top: 12px"
+                      >Add me to the database only (£10)</span
+                      >
+                    </label>
+                    <label for="two">
+                      <input id="two" type="radio" [(ngModel)]="selectAmount" name="price" [value]="22" />
+                      <span class="radio-span"
+                      >Add me to the database (£10) + I would like 3 match
+                      credits (£12)
+                    </span>
+                    </label>
+
+                    <label for="three">
+                      <input id="three" type="radio"  [(ngModel)]="selectAmount" name="price" [value]="40" />
+                      <span class="radio-span"
+                      >Add me to the database (£10) + I would like 10 match
+                      credits (£30)</span
+                      >
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="discount-input-box">
+                <label for="discount-code">Do you have a discount code? </label>
+
+                <div class="discount-input">
+                  <input
+                    id="discount-code"
+                    type="text"
+                    placeholder="Enter discount code"
+                    [(ngModel)]="couponCode"
+                  />
+                  <button *ngIf="!coupon" type="button" (click)="onApplyCoupon()">Apply</button>
+                  <button *ngIf="coupon" type="button" (click)="onRemoveCoupon()">Remove</button>
+                </div>
+                <small *ngIf="coupon" class="hint hint-second">You have successfully applied coupon code '{{couponCode}}' and saved (£{{couponDiscount}})</small>
+              </div>
+            </div>
+            <!-- END! registration-main-middle -->
+            <div class="registration-main-bottom">
+              <div class="payable">
+                <h3>Total Payable = £{{grandTotal}}</h3>
+              </div>
+              <!--            <div class="registration-main-bottom-img">-->
+              <!--              <img-->
+              <!--                src="./assets/images/brand/png/pay-apple.png"-->
+              <!--                alt="payment-type-img"-->
+              <!--              />-->
+              <!--            </div>-->
+
+              <!--            <div class="registration-main-bottom-card">-->
+              <!--              <div class="input-card-box">-->
+              <!--                <label for="createName">Add New Card</label>-->
+              <!--                <input type="text" id="createName" placeholder="Create Name" />-->
+              <!--              </div>-->
+
+              <!--              <div class="input-card-box">-->
+              <!--                <label for="createName">Card Number</label>-->
+              <!--                <input-->
+              <!--                  type="text"-->
+              <!--                  id="createName"-->
+              <!--                  placeholder="0000 0000 0000 0000"-->
+              <!--                />-->
+              <!--              </div>-->
+
+              <!--              <div class="input-card-box-grid">-->
+              <!--                <div class="input-card-box">-->
+              <!--                  <label for="createName">Date</label>-->
+              <!--                  <input type="text" id="createName" placeholder="Date" />-->
+              <!--                </div>-->
+
+              <!--                <div class="input-card-box">-->
+              <!--                  <label for="createName">Year</label>-->
+              <!--                  <input type="text" id="createName" placeholder="Year" />-->
+              <!--                </div>-->
+              <!--              </div>-->
+              <!--            </div>-->
+
+<!--                          <ul>-->
+<!--                            <li>-->
+<!--                              &lt;!&ndash; <button type="button" (click)="onSubmit()">-->
+<!--                                PAY NOW-->
+<!--                              </button> &ndash;&gt;-->
+<!--                              <button *ngIf="!isLoader" type="button" (click)="onSubmit()">-->
+<!--                                COMPLETE-->
+<!--                              </button>-->
+<!--                              <button *ngIf="isLoader" type="button"><span class="circle"></span></button>-->
+<!--                            </li>-->
+<!--                          </ul>-->
+            </div>
+          </div>
+          <!-- END! registration-main-top -->
+
+
+          <div class="sub-btn">
+            <button *ngIf="!isLoader"  type="button" (click)="onSubmit()"> COMPLETE</button>
+            <button *ngIf="isLoader" style="display: flex; justify-content: center; align-items: center" type="button"><span class="circle"></span></button>
+          </div>
+
+          <!-- END! registration-main-bottom -->
+        </div>
+        <div class="footer-step">
+          <div class="container">
+            <div class="footer-step-child">
+              <ul>
+                <li>
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+                <li>
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+                <li>
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+                <li>
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+                <li>
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+                <li>
+                  <!--              <i class="fa-regular fa-heart"></i>-->
+                  <i class="fa-solid fa-heart"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- END! footer-step -->
+  </div>
+</ion-content>

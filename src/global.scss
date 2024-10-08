@@ -1,0 +1,162 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+@import'./theme/stylesheets/base';
+@import "swiper/css/bundle";
+@import'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+
+.tabs-inner {
+    display: none !important;
+}
+
+ion-tabs {
+    justify-content: flex-end;
+    position: relative !important;
+    height: auto !important;
+    contain: content !important;
+}
+
+.item-inner {
+    border: 0px !important;
+    --inner-border-width: 0px !important;
+}
+
+ion-item {
+    --inner-border-width: 0px !important;
+}
+
+.invalid {
+    border: 1px solid red !important;
+    background-color: rgb(255 0 0 / 9%) !important;
+}
+
+.transparent-modal{
+  //--background: rgba(178, 177, 177, 0.09);
+  //--background:  #FFFF;
+  --background: #FFFF;
+  //--background:  #FFFF;
+  //border: 2px solid #cf085b;
+  //height: 70vh;
+  height: calc(100vh - 210px);
+  overflow: hidden!important;
+  border-radius: 20px;
+  top:118px;
+  &::part(content){
+    //backdrop-filter: blur(12px);
+    --background: #FFFF;
+  }
+}
+
+ion-checkbox {
+  --color-checked: #c3075f!important; /* Bright pink color for checked state */
+}
+
+
+//.transparent-modal {
+//  height: calc(100vh - 210px); /* Adjust height as needed */
+//  overflow: hidden !important;
+//  border-radius: 20px;
+//  top: 118px;
+//
+//  .modal-wrapper {
+//    ion-backdrop {
+//      opacity: 0 !important; /* Ensure backdrop is completely transparent */
+//      visibility: hidden !important; /* Hide the backdrop */
+//    }
+//  }
+//}
+
+.alart-modal{
+  //--background: rgba(178, 177, 177, 0.09);
+  --background:  rgba(255, 255, 255, 0);
+  --ion-background-color: rgba(255, 255, 255, 0);
+  //--background:  #FFFF;
+  //border: 2px solid #cf085b;
+  //height: 129px;
+  //width: 230px;
+  //top: 40%;
+  //left: 50%; /* position the left edge of the element at the middle of the parent */
+  //transform: translate(-50%, -50%);
+  //height: calc(100vh - 210px);
+  //overflow: hidden!important;
+  //border-radius: 20px;
+  //position: fixed;
+  transition: none;
+  //top:118px;
+  &::part(content){
+    //--background: #FFFF;
+    //backdrop-filter: blur(12px);
+    --ion-background-color: rgba(255, 255, 255, 0);
+    //--background: rgba(255, 255, 255, 0);
+  }
+}
+
+.profile-modal {
+  --height: 0;
+  --width: 0;
+  --background: transparent;
+}
+.custom-modal::part(content),
+.custom-modal .modal-wrapper {
+  //position: fixed !important;
+  --background-color: transparent;
+  top: 150px !important;
+  right: 5% !important;
+  --background: transparent;
+  --width: fit-content !important;
+  --height: fit-content !important;
+  --border-radius: 6.2px !important;
+  height: fit-content !important;
+  box-shadow: 0 0 5px #58595b !important;
+}
+
+.password-invalid {
+  border-radius: 30px;
+  //border: 1px solid red;
+  border-color:  red!important;
+  //background-color: rgb(255 0 0 / 9%) !important;
+  input {
+    background-color: rgb(255 0 0 / 9%) !important;
+  }
+
+  span {
+    background-color: rgb(255 0 0 / 9%) !important;
+  }
+  ion-icon{
+    color: rgba(255, 0, 0, 0.51) !important;
+  }
+  svg{
+    fill: rgba(255, 0, 0, 0.51) !important;
+  }
+}
+
+//::-webkit-scrollbar {
+//  display: none;
+//}
+//
+//:host ::-webkit-scrollbar {
+//  display: none;
+//}
+//
+///* Hide scrollbar for IE, Edge and Firefox */
+//:host ion-content {
+//  -ms-overflow-style: none;  /* IE and Edge */
+//  scrollbar-width: none;  /* Firefox */
+//}

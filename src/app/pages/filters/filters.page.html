@@ -1,0 +1,144 @@
+<ion-header [translucent]="true">
+  <div class="profile-list-header">
+    <div class="container">
+      <div class="profile-list-header-child">
+        <div class="profile-list-header-left" routerLink="/" (click)="closeModal()">
+          <img src="./assets/images/brand/png/white-logo.png" alt="white-logo" />
+
+          <h1>HEALTHY NIKAH</h1>
+        </div>
+        <div class="profile-list-header-right">
+          <button type="button" routerLink="/notification" (click)="closeModal()">
+            <img src="./assets/images/brand/png/notification-second.png" alt="notification-second" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="home-main-area">
+    <div class="container">
+      <div class="home-info-card" style="display: block">
+        <div class="home-info-card-main">
+          <div class="home-info-card-top">
+            <h1>Choose Filters </h1>
+          </div>
+          <!-- END! home-info-card-top -->
+          <div class="all-filter-box">
+            <div class="age-section">
+              <div class="age-title">
+                <h3>Age</h3>
+                <p><u (click)="toggleFilterItemSelectAll('age', 'select')">Select all</u></p>
+                <p><u (click)="toggleFilterItemSelectAll('age', 'clear')">Clear all</u></p>
+              </div>
+              <ion-label *ngIf="isLoading" style="display: grid; grid-gap: 10px; grid-template-columns: repeat(3,1fr);">
+                <h3>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px; border-radius: 7px"></ion-skeleton-text>
+                </h3>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px; border-radius: 7px"></ion-skeleton-text>
+                </p>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px; border-radius: 7px"></ion-skeleton-text>
+                </p>
+              </ion-label>
+              <div class="age-button" *ngIf="!isLoading">
+                <button
+                  *ngFor="let age of displayedAgeOptions"
+                  [class.button-bg-color]="selectedAges.includes(age)"
+                  [class.border-dashed]="!selectedAges.includes(age)"
+                  (click)="toggleFilterItem('age', age)"
+                >
+                  {{ age }}
+                </button>
+              </div>
+              <div class="show-more">
+                <p *ngIf="displayedAgeOptions.length < ageOptions.length"><u (click)="toggleShowMore('age')">Show more</u></p>
+              </div>
+            </div>
+
+            <div class="ethnicity-section">
+              <div class="ethnicity-title">
+                <h3>Ethnicity</h3>
+                <p><u (click)="toggleFilterItemSelectAll('ethnicity', 'select')">Select all</u></p>
+                <p><u (click)="toggleFilterItemSelectAll('ethnicity', 'clear')">Clear all</u></p>
+              </div>
+
+              <ion-label *ngIf="isLoading" style="display: grid; grid-gap: 10px; grid-template-columns: repeat(3,1fr);">
+                <h3>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </h3>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </p>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </p>
+              </ion-label>
+              <div class="ethnicity-button" *ngIf="!isLoading">
+                <button
+                  *ngFor="let ethnicity of displayedEthnicityOptions"
+                  [class.button-bg-color]="selectedEthnicities.includes(ethnicity)"
+                  [class.border-dashed]="!selectedEthnicities.includes(ethnicity)"
+                  (click)="toggleFilterItem('ethnicity', ethnicity)"
+                >
+                  {{ ethnicity }}
+                </button>
+              </div>
+              <div class="show-more">
+                <p *ngIf="displayedEthnicityOptions.length < ethnicityOptions.length"><u (click)="toggleShowMore('ethnicity')">Show more</u></p>
+              </div>
+            </div>
+
+            <div class="profession-section">
+              <div class="profession-title">
+                <h3>Profession</h3>
+                <p><u (click)="toggleFilterItemSelectAll('profession', 'select')">Select all</u></p>
+                <p><u (click)="toggleFilterItemSelectAll('profession', 'clear')">Clear all</u></p>
+              </div>
+
+              <ion-label *ngIf="isLoading" style="display: grid; grid-gap: 10px; grid-template-columns: repeat(3,1fr);">
+                <h3>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </h3>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </p>
+                <p>
+                  <ion-skeleton-text [animated]="true" style="width: 100%; height: 30px"></ion-skeleton-text>
+                </p>
+              </ion-label>
+
+              <div class="profession-button" *ngIf="!isLoading">
+                <button
+                  *ngFor="let profession of displayedProfessionOptions"
+                  [class.button-bg-color]="selectedProfessions.includes(profession)"
+                  [class.border-dashed]="!selectedProfessions.includes(profession)"
+                  (click)="toggleFilterItem('profession', profession)"
+                >
+                  {{ profession }}
+                </button>
+              </div>
+              <div class="show-more">
+                <p *ngIf="displayedProfessionOptions.length < professionOptions.length"><u (click)="toggleShowMore('profession')">Show more</u></p>
+              </div>
+            </div>
+          </div>
+
+          <div (click)="closeModal()" class="see-fifty-button" *ngIf="isFilterApplied && totalUsers > 0">
+            <button>See {{totalUsers}} results</button>
+          </div>
+
+          <div (click)="closeModal()" class="see-fifty-button" *ngIf="isFilterApplied && totalUsers === 0">
+            <button >No Results</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</ion-content>

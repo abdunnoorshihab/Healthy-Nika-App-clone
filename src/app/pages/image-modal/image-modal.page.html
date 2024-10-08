@@ -1,0 +1,25 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="close" (click)="close($event)">
+<!--    <span (click)="close($event)"><i class="fa-solid fa-xmark"></i></span>-->
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+    <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
+  </svg>
+  </div>
+  <swiper [config]="config"
+          (slideChange)="onSlideChange($event)">
+
+    <ng-template swiperSlide *ngFor="let data of images; let i = index">
+
+
+      <div class="swiper-zoom-container">
+        <img [src]="data" alt="">
+      </div>
+    </ng-template>
+  </swiper>
+  <div class="image-info">
+    <p>{{ currentIndex + 1 }}/{{ images?.length }}</p>
+  </div>
+</ion-content>

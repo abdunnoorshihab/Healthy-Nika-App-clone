@@ -1,0 +1,115 @@
+<!--<div class="header">-->
+<!--  <div class="container">-->
+<!--    <div class="header-main">-->
+<!--      <div class="app-name">-->
+<!--        <h3>HN</h3>-->
+<!--      </div>-->
+
+<!--      <div class="bell-box">-->
+<!--        <a>-->
+<!--          <svg viewBox="0 0 448 512">-->
+<!--            <path-->
+<!--              d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z" />-->
+<!--          </svg>-->
+
+<!--          <span>2</span>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="content-area">
+<div class="content-image">
+  <img [src]="user?.gender === 'male' ? '/assets/images/temp/png/13.png' : '/assets/images/png/13 (1).png'" alt="">
+</div>
+  <p>Interested in a specific profile? Enter their
+    profile code to view their full profile.</p>
+</div>
+
+
+<div class="search" >
+  <div class="search-main">
+    <div class="container">
+      <div class="search-top">
+        <!--      <div class="back-btn">-->
+        <!--        <button routerLink="/home">-->
+        <!--          <i class="fa-solid fa-chevron-left"></i>-->
+        <!--        </button>-->
+        <!--      </div>-->
+        <!-- END! back-btn -->
+
+        <div class="search-input">
+          <form #searchForm="ngForm" (submit)="onSubmit()">
+            <button type="button"  (click)="onChangeInput(searchInput)" >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <div class="input-box">
+              <span style="color: #353535;">{{user?.gender === 'male'? 'F' : 'M'}}</span>
+              <input
+                #searchInput
+                id="searchInput"
+                class="tw"
+                type="text"
+                (ngModelChangeDebounced)="searchQuery = $event"
+                (focus)="handleFocus($event)"
+                name="searchTerm"
+                autocomplete="off"
+                ngModel
+                required
+                [placeholder]="user?.gender === 'male'? 'e.g. F000' : 'e.g. M000'"
+              />
+<!--              <i class="fa-solid fa-magnifying-glass"></i>-->
+            </div>
+            <button type="button" >
+              <i class="fa-solid fa-arrow-left-long"></i>
+            </button>
+          </form>
+        </div>
+        <!-- END! search-input -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END! search-main -->
+
+<div class="search-data">
+<!--  <div-->
+<!--    class="search-history"-->
+<!--    *ngIf="!searchUsers.length && selectArray.length"-->
+<!--  >-->
+<!--    <h3>-->
+<!--      <span>Search History</span>-->
+<!--      <button type="button" (click)="onDeleteLocalData()">-->
+<!--        <i class="fa-solid fa-trash-can"></i>-->
+<!--      </button>-->
+<!--    </h3>-->
+
+<!--    <div class="search-history-list">-->
+<!--      <ul>-->
+<!--        <li *ngFor="let data of selectArray;let i = index">-->
+<!--          <a (click)="onSelectArray(data?.name, searchInput,i)">-->
+<!--            <span>{{data?.name | titlecase}}</span>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div class="search-input-match" *ngIf="(searchQuery) && (searchUsers?.length <= 0)">
+    <p>Sorry, we couldn't find a match for
+      “{{searchQuery}}”, please try another search</p>
+  </div>
+
+  <div class="search-input-match" *ngIf="searchUsers?.length > 0">
+    <a>See results</a>
+    <div *ngFor="let data of searchUsers" style="margin: 10px">
+      <app-profile-list-part-card  [data]="data"
+                                   [request]="requests"
+                                   [requestsTo]="requestsTo"
+                                   (onNewRequestSent)="onNewRequestSent($event)"
+                                   (onNewHide)="onNewHide($event)"
+      ></app-profile-list-part-card>
+    </div>
+  </div>
+</div>

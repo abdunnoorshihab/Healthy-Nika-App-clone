@@ -1,0 +1,41 @@
+
+@import'../../../../theme/stylesheets/variables';
+// <!-- Start!pause-my-account -->
+.pause-my-account{
+    margin-top: 5px;
+    background-color: rgba(211, 204, 204, 0.658);
+    padding: 3px 10px 8px;
+    h3 {
+        font-family: $font-en-montserrat;
+        font-size: 18px;
+        font-weight: 700;
+        color: $color-primary;
+    }
+    p{
+        font-family: $font-en-montserrat;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .txt-reason{
+        background-color:$color-white;
+        padding: 7px;
+        outline: none;
+        border: none;
+        width: 100%;
+        margin: 10px 0;
+    }
+    .btn-pause,.btn-reactivate{
+        max-width: 200px;
+        width: 100%;
+        background-color: $color-primary;
+        color: #FFFFFF;
+        padding: 8px;
+        border-radius: 20px;
+        font-family: $font-en-montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin: 5px 0;
+      }
+}
+// <!-- End!pause-my-account -->

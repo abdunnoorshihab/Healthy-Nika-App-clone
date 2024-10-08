@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Image Crop</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCropImage()">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!--  [resizeToWidth]="resizeToWidth"-->
+<!--  [resizeToHeight]="resizeToHeight"-->
+
+  <image-cropper
+    class="image-cropper"
+    [roundCropper]="roundCropper"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="maintainAspectRatio"
+    [aspectRatio]="3 / 4"
+    format="png"
+    output = "blob"
+    [imageQuality]="imageQuality"
+    (imageCropped)="imageCropped($event)"
+    (cropperReady)="cropperReady()"
+  ></image-cropper>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<!--<div class="header">-->
+<!--  <div class="container">-->
+<!--    <div class="header-main">-->
+<!--      <div class="logo">-->
+<!--        <h3>HN</h3>-->
+<!--      </div>-->
+
+<!--      <div class="notification">-->
+<!--        <img src="./assets/images/brand/png/notification.png" alt="">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="header-main back">
+      <div class="toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Credits</ion-title>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="all-credit">
+        <div class="container">
+               <div class="all-credit-top">
+                <img src="/assets/images/brand/png/cart-black.png" alt="">
+                     <h3>Top up match request credit</h3>
+               </div>
+               <div class="credit-main">
+                    <div class="credit-card">
+                          <h3>1 Credit -  £5</h3>
+                          <button *ngIf="!isLoading" (click)="onSubmit(5, 1)">Select</button>
+                          <button *ngIf="isLoading && selectedCredit === 1"><span class="circle"></span></button>
+                    </div>
+
+                    <div class="credit-card">
+                      <h3>3 credits - £12</h3>
+                      <button *ngIf="!isLoading" (click)="onSubmit(12, 3)">Select</button>
+                      <button *ngIf="isLoading && selectedCredit === 3"><span class="circle"></span></button>
+
+                </div>
+
+                 <div class="credit-card">
+                   <h3>10 credits - £40</h3>
+                   <button *ngIf="!isLoading" (click)="onSubmit(40, 10)">Select</button>
+                   <button *ngIf="isLoading && selectedCredit === 10"><span class="circle"></span></button>
+                 </div>
+               </div>
+        </div>
+  </div>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>

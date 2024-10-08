@@ -1,0 +1,62 @@
+.close{
+  position: absolute;
+  z-index: 999;
+  border-radius: 20px;
+  right: 0;
+  top: 0;
+  padding: 7px;
+  i{
+    font-size: 18px;
+  }
+}
+
+ion-content{
+  position: relative;
+  border: 2px solid #cf085b;
+  height: 100%;
+  --background: #FFFF;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image-info{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 999;
+  bottom:15px;
+}
+
+swiper{
+  height: 100%;
+  border-radius: 20px!important;
+  overflow: hidden!important;
+}
+
+.swiper-slide {
+  border-radius: 15px!important; /* Change this value to your desired border radius */
+  overflow: hidden!important; /* Ensure content inside the slide respects the border radius */
+}
+
+img{
+  object-fit: cover;
+  }
+
+//.swiper-zoom-container {
+//  overflow: hidden!important;
+//  border-radius: 20px!important;
+//  height: 100%!important;
+//  img{
+//    border-radius: 20px!important;
+//    height: 100%!important;
+//    overflow: hidden!important;
+//  }
+//}
+//.swiper-slide{
+//  overflow: hidden!important;
+//  border-radius: 20px!important;
+//}
+//.swiper-wrapper{
+//  overflow: hidden!important;
+//  border-radius: 20px!important;
+//}

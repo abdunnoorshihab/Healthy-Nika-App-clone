@@ -1,0 +1,83 @@
+@import'../../../theme/stylesheets/variables';
+.header{
+    z-index: 11;
+    padding: 10px 15px;
+    background-color: $color-white;
+    .header-main{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+
+        .logo{
+            h3{
+                color: $color-primary;
+                font-family: $font-en-montserrat;
+                text-transform: uppercase;
+                font-size: 20px;
+                line-height: 20px;
+                font-weight: 700;            }
+        }
+        .page-name{
+            h4{
+                color: $color-black;
+                font-family: $font-en-montserrat;
+                font-weight: 700;
+                font-size: 20px;
+                text-transform: capitalize;
+                line-height: 24px;
+            }
+        }
+        .notification{
+            img{
+                width: 40px;
+            }
+        }
+    }
+}
+
+
+.dashboard-area{
+    .dashboard-main{
+        padding: 20px 15px;
+        box-sizing: border-box;
+        .heart-icon{
+            margin-bottom: 20px;
+            img {
+                max-width:65px;
+                width: 100%;
+                object-fit: contain;
+                margin-inline: auto;
+            }
+        }
+      .card1{
+        padding: 68px 15px !important;
+      }
+        .dashboard-card{
+            background-color: $color-primary;
+            padding: 50px 15px;
+            text-align: center;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            h3{
+                color: $color-white;
+                font-family: $font-en-montserrat;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 24px;
+                max-width: 320px;
+                margin: 0px auto 12px auto!important;
+            }
+            span{
+                color: $color-white;
+                font-family: $font-en-montserrat;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+    }
+}

@@ -1,0 +1,259 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="dashboard-activity-title">
+            <h2>Dashboard: Your Match Activity</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-container">
+    <div class="content-title" routerLink="/match-credits">
+      <h1><span>MATCH CREDITS:</span> {{ user?.credit }} remaining</h1>
+    </div>
+
+    <div class="awaiting-container box-sections">
+      <div class="upper-sec">
+        <h3>Awaiting response ({{ (getRequests?.length + sendRequests?.length) ?? 0 }})</h3>
+
+        <a (click)="onHideAwaiting('Awaiting')"><u>Hide</u></a>
+      </div>
+
+      <ng-container *ngIf="hideAwaiting">
+        <div class="main-box" *ngFor="let data of getRequests">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.userInfo?.userId }}</h2>
+
+            <div class="dates dates-top">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <p class="expire">Expires in: {{ getTime(data?.expireDate, data?.expireTime) ?? '0' }}</p>
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left">
+              <button class="btn accept-color" (click)="updateRequestDB(data?._id,'Accepted')">Accept match</button>
+
+              <button class="btn decline-match-color" (click)="updateRequestDB(data?._id,'Ignore')">Decline match
+              </button>
+            </div>
+
+            <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.userInfo?.userId]">Full
+              profile
+            </button>
+          </div>
+        </div>
+
+        <div class="main-box" *ngFor="let data of sendRequests">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.requestToInfo?.userId }}</h2>
+
+            <div class="dates dates-top">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <p class="expire">Expires in: {{ getTime(data?.expireDate, data?.expireTime) ?? '0' }}</p>
+              <!--              <p class="expire">Expires in: 5 hours</p>-->
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <button class="btn awaiting-color">Awaiting response</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.requestToInfo?.userId]">
+                Full profile
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="awaiting-container box-sections">
+      <div class="upper-sec upper-sec-2">
+        <h3>Successful matches ({{ (requestsSuccess?.length + requestsToSuccess?.length) ?? 0 }})</h3>
+
+        <a (click)="onHideAwaiting('Successful')"><u>Hide</u></a>
+      </div>
+      <ng-container *ngIf="hideSuccess">
+        <div class="main-box" *ngFor="let data of requestsSuccess">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.requestToInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>date accepted: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <button class="btn accept-color">Successful match</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.requestToInfo?.userId]">
+                Full profile
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-box" *ngFor="let data of requestsToSuccess">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.userInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>date accepted: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <button class="btn accept-color">Successful match</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.userInfo?.userId]">Full
+                profile
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
+
+    <div class="awaiting-container box-sections">
+      <div class="upper-sec upper-sec-2">
+        <h3>Unsuccessful matches ({{ (requestsUnsuccess?.length + requestsToUnsuccess?.length) ?? 0 }})</h3>
+
+        <a (click)="onHideAwaiting('Unsuccessful')"><u>Hide</u></a>
+      </div>
+      <ng-container *ngIf="hideUnsuccessful">
+        <div class="main-box" *ngFor="let data of requestsUnsuccess">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.requestToInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <!--              <p>Expires in:7 days</p>-->
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <!--              <button class="btn decline-match-color">Unsuccessful match</button>-->
+              <button class="btn decline-match-color" (click)="onRequest($event, data?.requestToInfo, data)">Request
+                Again
+              </button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.requestToInfo?.userId]">
+                Full profile
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="main-box" *ngFor="let data of requestsToUnsuccess">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.userInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <!--              <p>Expires in:7 days</p>-->
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <!--              <button class="btn decline-match-color">Unsuccessful match</button>-->
+              <button class="btn decline-match-color" (click)="onRequest($event, data?.userInfo, data)">Request Again</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.userInfo?.userId]">Full
+                profile
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
+
+
+
+    <div class="awaiting-container box-sections">
+      <div class="upper-sec upper-sec-2">
+        <h3>Expired matches ({{ (requestsExpired?.length + requestsToExpired?.length) ?? 0 }})</h3>
+
+        <a (click)="onHideAwaiting('Unsuccessful')"><u>Hide</u></a>
+      </div>
+      <ng-container *ngIf="hideExpired">
+        <div class="main-box" *ngFor="let data of requestsExpired">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.requestToInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <!--              <p>Expires in:7 days</p>-->
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <!--              <button class="btn decline-match-color">Unsuccessful match</button>-->
+              <button *ngIf="!isLoaderRequest" class="btn decline-match-color" (click)="onRequest($event, data?.requestToInfo, data)">Request
+                Again
+              </button>
+              <button *ngIf="isLoaderRequest" >Please wait...</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.requestToInfo?.userId]">
+                Full profile
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="main-box" *ngFor="let data of requestsToExpired">
+          <div class="main-box-upper">
+            <h2>PROFILE CODE: {{ data?.userInfo?.userId }}</h2>
+
+            <div class="dates">
+              <p>Date requested: {{ data?.createdAt | date:'dd/MM/yy' }}</p>
+              <!--              <p>Expires in:7 days</p>-->
+            </div>
+          </div>
+
+          <div class="main-box-lower">
+            <div class="main-box-lower-left-2">
+              <!--              <button class="btn decline-match-color">Unsuccessful match</button>-->
+              <button *ngIf="!isLoaderRequest" class="btn decline-match-color" (click)="onRequest($event, data?.userInfo, data)">Request Again</button>
+              <button *ngIf="isLoaderRequest" >Please wait...</button>
+              <button class="btn full-profile-color" [routerLink]="['/profile-details',data?.userInfo?.userId]">Full
+                profile
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
+
+
+
+  </div>
+
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

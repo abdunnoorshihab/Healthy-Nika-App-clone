@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "99699599168",
+    "project_id": "healthy-nika",
+    "storage_bucket": "healthy-nika.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99699599168:android:346a75d0fd11e16cd73ca5",
+        "android_client_info": {
+          "package_name": "com.healthynika.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiZnhb3j4q0pVR7mquvWjUVSilv0hEoeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,642 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<!--  <div class="registration-top">-->
+<!--    <div class="container">-->
+<!--      <div class="registration-top-main">-->
+<!--             <span routerLink="/registration2">-->
+<!--               <i class="fa-solid fa-arrow-left"></i>-->
+<!--             </span>-->
+
+<!--        <h3>HEALTHY NIKAH</h3>-->
+<!--        <p>CREATE YOUR PROFILE</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="registration-area" id="registrationArea">
+
+    <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+      <div class="container">
+        <div class="registration-main">
+          <div class="form">
+            <div class="form-field">
+              <label>Marital status</label>
+              <div class="mat-radio" style="padding-left: 14px;">
+                <label for="neverMarried"
+                  ><input
+                    formControlName="maritalStatus"
+                    id="neverMarried"
+                    type="radio"
+                    name="maritalStatus"
+                    value="Never Married"
+                  />
+                  <span  class="span-with">Never Married</span></label
+                >
+                <label for="Divorced"
+                ><input
+                  id="Divorced"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Divorced"
+                />
+                  <span class="span-with">Divorced</span>
+                </label>
+                <label for="Widowed"
+                ><input
+                  id="Widowed"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Widowed"
+                />
+                  <span class="span-with">Widowed</span>
+                </label>
+                <label for="Annulled"
+                ><input
+                  id="Annulled"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Annulled"
+                />
+                  <span class="span-with">Annulled</span>
+                </label>
+                <label for="Married"
+                  ><input
+                    id="Married"
+                    formControlName="maritalStatus"
+                    type="radio"
+                    name="maritalStatus"
+                    value="Married"
+                  />
+                  <span class="span-with">Married</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field form-field-name" style="margin-bottom: 0">
+              <label>Islamic practice</label>
+              <p>
+                Describe your Islamic practice in detail. This may include information
+                about your Salah, daily routines or activities, how you dress/cover, your
+                sect/methodology and any Islamic goals you may have.
+              </p>
+              <textarea
+                #islamic
+                [class]="dataForm.get('islamicPractice').touched && dataForm.get('islamicPractice').invalid ? 'invalid':''"
+                formControlName="islamicPractice"
+                name=""
+                id=""
+                cols="20"
+                rows="5"
+                (input)="onIslamicPracticeInput($event)"
+                placeholder="Enter your Islamic practice"
+              ></textarea>
+<!--              <small class="hint hint-second">Max {{ practiceCharCount }}/1000 characters</small>-->
+              <small class="hint hint-second">{{ practiceCharCount }}/1000 characters (max)</small>
+            </div>
+
+            <div class="radio-field" *ngIf="prevData?.gender === 'female'">
+              <p>Do you wear Hijab?</p>
+
+              <div class="radio-field-main">
+                <div class="mat-radio">
+                  <label for="hijab">
+                    <input
+                      formControlName="hijab"
+                      id="hijab"
+                      type="radio"
+                      name="hijab"
+                      value="yes"
+                      checked
+                    />
+                    <span>Yes</span>
+                  </label>
+                  <label for="hijab">
+                    <input
+                      id="hijab"
+                      formControlName="hijab"
+                      type="radio"
+                      name="hijab"
+                      value="no"
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field" style="margin-top: 12px">
+              <label>Educational qualifications/achievements</label>
+              <textarea
+                #educationaLevel
+                [class]="dataForm.get('educationLevel').touched && dataForm.get('educationLevel').invalid ? 'invalid':''"
+                formControlName="educationLevel"
+                name=""
+                id=""
+                cols="20"
+                rows="5"
+                placeholder="Enter your educational qualifications/achievements"
+              ></textarea>
+
+            </div>
+
+            <div class="form-field form-field-name">
+              <label style="line-height: 16px">Professional details</label>
+              <p>What is your profession?</p>
+              <div class="profession-select">
+                <app-searchable-select
+                  [selectedValue]="professionSelected"
+                  [items]="professions"
+                  [holdItems]="professions"
+                  [fieldTitle]="'Choose your profession'"
+                  [itemTextField]="'name'"
+                  (onChange)="onChangeProfession($event)"
+                ></app-searchable-select>
+                <div
+                  class="invalid-text"
+                  *ngIf="dataForm.get('profession')?.touched && dataForm.get('profession')?.invalid"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+              <p>If other, write below in one or two words.</p>
+              <div class="other-profession">
+                <input
+                  formControlName="otherProfession"
+                  placeholder=""
+                  type="text"
+                />
+                <div
+                  class="invalid-text"
+                  *ngIf="professionSelected === 'Other'"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+
+              <h3>
+                Include your current job title, specialisation/field, years of
+                experience, career goals and region of work below.
+              </h3>
+
+              <textarea
+                [class]="dataForm.get('professionalDetails').touched && dataForm.get('professionalDetails').invalid ? 'invalid':''"
+                formControlName="professionalDetails"
+                name="professionalDetails"
+                id=""
+                cols="20"
+                rows="1"
+                placeholder="Enter your professional details"
+              ></textarea>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>About me</label>
+              <p>
+                Write a summary about yourself, highlighting your personality,
+                interests, hobbies and values.
+              </p>
+              <textarea
+                #selfSummery
+                [class]="dataForm.get('selfSummery').touched && dataForm.get('selfSummery').invalid ? 'invalid':''"
+                formControlName="selfSummery"
+                name="selfSummery"
+                id=""
+                cols="20"
+                rows="7"
+                (input)="onAboutPracticeInput($event)"
+                placeholder="Enter your self summary"
+              ></textarea>
+<!--              <small class="hint hint-second">Max 1000 characters</small>-->
+              <small class="hint hint-second">{{ aboutCharCount }}/1000 characters (max)</small>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>What are you looking for in your spouse? </label>
+              <p>
+                Please provide as much information as possible. This includes
+                age and height preference, level of religious observance,
+                preferred religious practices (e.g. salah/fasting etc.),
+                cultural values and family background, personality traits and
+                any lifestyle preferences you may have.
+              </p>
+              <textarea
+                #aboutMe
+                [class]="dataForm.get('aboutMe').touched && dataForm.get('aboutMe').invalid ? 'invalid':''"
+                formControlName="aboutMe"
+                name="aboutMe"
+                id=""
+                cols="20"
+                rows="7"
+                (input)="onSpousePracticeInput($event)"
+                placeholder="Enter what you are looking for in your spouse"
+              ></textarea>
+<!--              <small class="hint hint-second">Max 1000 characters </small>-->
+              <small class="hint hint-second">{{ spouseCharCount }}/1000 characters (max)</small>
+
+            </div>
+
+            <div class="form-field">
+              <label>Profession</label>
+              <div class="mat-radio">
+                <label for="partnerProfession1"
+                  ><input
+                    formControlName="partnerProfession"
+                    id="partnerProfession1"
+                    type="radio"
+                    name="partnerProfession"
+                    value="I am looking to get married to a healthcare
+                    professional."
+                  />
+                  <span class="radio-span"
+                    >I am looking to get married to a healthcare
+                    professional.</span
+                  ></label
+                >
+                <label for="partnerProfession2"
+                  ><input
+                    id="partnerProfession2"
+                    formControlName="partnerProfession"
+                    type="radio"
+                    name="partnerProfession"
+                    value="I would prefer a healthcare professional, but either way is
+                    fine."
+                  />
+                  <span class="radio-span"
+                    >I would prefer a healthcare professional, but either way is
+                    fine.
+                  </span>
+                </label>
+                <label for="partnerProfession3"
+                  ><input
+                    id="partnerProfession3"
+                    formControlName="partnerProfession"
+                    type="radio"
+                    name="partnerProfession"
+                    value="I do not mind if they are a healthcare professional or
+                    not."
+                  />
+                  <span class="radio-span"
+                    >I do not mind if they are a healthcare professional or
+                    not.</span
+                  >
+                </label>
+              </div>
+
+              <p >Is there a specific type of healthcare professional you would like to marry?
+                e.g. Doctor/Dentist. If so, please specify below, otherwise leave blank.</p>
+              <div class="other-profession">
+                <input
+                  class="input-padding"
+                  formControlName="otherPartnerProfession"
+                  placeholder=""
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>Additional information</label>
+              <p>
+                This may include other details or preferences you feel are
+                important for potential matches to know about you.
+              </p>
+              <textarea
+                #additionalInformation
+                formControlName="additionalInformation"
+                name="additionalInformation"
+                id=""
+                type="text"
+                cols="20"
+                rows="7"
+                placeholder="Enter additional information"
+              ></textarea>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label
+                >Would you like to increase your chances of finding a match?
+              </label>
+
+              <p>
+                I would like my anonymous profile summary (without identifiable
+                information) to be uploaded on Instagram and TikTok.
+              </p>
+
+              <div class="mat-radio">
+                <label for="one"
+                  ><input
+                    formControlName="findingMatch"
+                    id="one"
+                    type="radio"
+                    name="findingMatch"
+                    value="Yes - I would like to increase my chances of finding a
+                    match. (Recommended option)"
+                  />
+                  <span class="radio-span"
+                    >Yes - I would like to increase my chances of finding a
+                    match. (Recommended option)</span
+                  ></label
+                >
+                <label for="two"
+                  ><input
+                    id="two"
+                    formControlName="findingMatch"
+                    type="radio"
+                    name="findingMatch"
+                    value="No - I will use Telegram only, even though this may reduce
+                    the chances of me finding a match."
+                  />
+                  <span class="radio-span"
+                    >No - I will use Telegram only, even though this may reduce
+                    the chances of me finding a match.
+                  </span>
+                </label>
+                <label for="three"
+                  ><input
+                    id="three"
+                    formControlName="findingMatch"
+                    type="radio"
+                    name="findingMatch"
+                    value="No - I want my profile to be visible only on the app
+                    only."
+                  />
+                  <span class="radio-span"
+                    >No - I want my profile to be visible only on the app
+                    only.</span
+                  >
+                </label>
+              </div>
+            </div>
+
+            <p slot="start"    class="custom-checkbox"><a  class="tram-condition">Terms and Conditions:</a></p>
+
+            <div class="terms-container">
+              <ion-checkbox slot="start" id="termsCheckbox"  formControlName="termsConditions" class="custom-checkbox" required></ion-checkbox>
+              <label for="termsCheckbox">
+              <span class="terms-text">
+                By ticking this option, I agree to the <a  class="terms-link" (click)="openTerms($event)">terms and conditions</a> and confirm that I am serious about marriage and adhering to Islamic guidelines.
+              </span>
+              </label>
+            </div>
+
+            <!-- Terms and Conditions Popup -->
+            <div id="termsPopup" class="terms-popup">
+              <div class="popup-content">
+                <span class="close-popup" (click)="closeTerms()">&times;</span>
+                <h1>Terms and Conditions</h1>
+                <div class="content-area">
+                  <section>
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>
+                      By creating an account and using our matchmaking service, you acknowledge and agree to be legally bound by these Terms and Conditions. By ticking the checkbox or clicking "I agree," you confirm that you have read, understood, and accepted all the provisions outlined herein. If you do not agree to any part of these terms, you must discontinue using the service immediately. Failure to do so constitutes your acceptance of these terms, and you waive any claim of ignorance or misunderstanding.
+                    </p>
+                  </section>
+                  <section>
+                    <h2>2. Privacy and Confidentiality</h2>
+                    <h3>2.1. Data Collection</h3>
+                    <p>
+                      By using this service, you agree to provide truthful, accurate, and up-to-date personal information, which will be stored securely in our database in compliance with applicable data protection laws, including the General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), and other relevant privacy regulations.
+                    </p>
+                    <h3>2.2. Confidentiality</h3>
+                    <p>
+                      All personal data will be treated as confidential and will not be shared with any third parties without your explicit consent, except as required by law or for the purpose of providing this service as outlined below.
+                    </p>
+                    <h3>2.3. Security</h3>
+                    <p>
+                      We employ advanced technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, and destruction. However, no system is 100% secure, and we cannot guarantee the absolute security of your data.
+                    </p>
+                  </section>
+                  <section>
+                    <h2>3. Consent for Processing Sensitive Data</h2>
+                    <p>
+                      By using this service, you consent to the collection and processing of any sensitive personal data, including but not limited to your gender, sexual orientation, relationship preferences, and other information relevant to matchmaking. This data is collected for the sole purpose of facilitating potential matches and will not be used for any other purposes without your explicit consent.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h2>4. Information Sharing and Matching Process</h2>
+                    <h3>4.1. Consent to Share Information:</h3>
+                    <p>
+                      By participating in our matchmaking service, you consent to the sharing of your profile information (e.g., name, photos, age, location, interests, relationship preferences) with other users to facilitate potential matches.
+                    </p>
+                    <h3>4.2. Reciprocal Interest:</h3>
+                    <p>
+                      Your profile details will only be shared with users who have expressed mutual interest. You agree that without this exchange of information, the service cannot function effectively.
+                    </p>
+                    <h3>4.3. Limited Access:</h3>
+                    <p>
+                      If you choose not to allow your profile to be shared with other users, you will not be able to participate in the matchmaking process.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h2>5. User Responsibilities and Conduct</h2>
+                    <h3>5.1. Accurate Information:</h3>
+                    <p>
+                      You agree to provide true, accurate, and up-to-date information in your profile at all times. Providing false or misleading information, including impersonating others, is strictly prohibited and will result in the immediate termination of your account.
+                    </p>
+                    <h3>5.2. Respectful Behavior:</h3>
+                    <p>
+                      You must treat other users with respect and engage in appropriate communication. Any form of harassment, abusive behavior, or misuse of the platform will result in immediate suspension or permanent termination of your account.
+                    </p>
+                    <h3>5.3. Indemnity: </h3>
+                    <p>
+                      You agree to indemnify and hold harmless [HealthyNikah, Match Now FZ-LLC its affiliates, officers, directors, employees, and agents from any and all claims, damages, liabilities, costs, and expenses arising from your use of the service or your violation of these Terms and Conditions or any applicable law.
+                    </p>
+                  </section>
+                  <section>
+                    <h2>6. Age Restriction and Verification</h2>
+                    <h3>6.1. Minimum Age:</h3>
+                    <p>
+                      You must be at least 18 years old to use this service. By creating an account, you represent and warrant that you meet this age requirement.                    </p>
+                    <h3>6.2. Verification:</h3>
+                    <p>
+                      We reserve the right to request age verification at any time and may terminate your account if we discover that you are underage. Any use of the service by individuals under the age of 18 is strictly prohibited.                    </p>
+                  </section>
+
+                  <section>
+                    <h2>7. Non-Guarantee of Matches or Success</h2>
+                    <h3>7.1. No Guarantee:</h3>
+                    <p>
+                      We make no warranties, representations, or guarantees regarding the quality or quantity of matches or the success of any relationships formed as a result of using this service. The success of the matchmaking process depends on various factors beyond our control, including user activity and preferences.                    <h3>6.2. Verification:</h3>
+                    <p>
+
+                    <h3>7.2. Limitation of Liability:</h3>
+                    <p>
+                      To the fullest extent permitted by law, we disclaim any liability for any claims arising from your use of the service, including but not limited to emotional distress, disappointment, or dissatisfaction with the quality of matches. <p>
+                  </section>
+
+                  <section>
+                    <h2>8. Limitation of Liability for User Conduct</h2>
+                    <p>
+                      We do not assume any responsibility for the actions or conduct of users, either on or off the platform. We do not perform background checks, and interactions, whether through messaging or in-person meetings, are at your own risk. You are solely responsible for your interactions with other users, and we encourage you to take appropriate precautions.
+                    <p>
+                  </section>
+                  <section>
+                    <h2>9. Right to Modify or Suspend Service</h2>
+                    <h3>9.1. Service Modifications:</h3>
+                    <p>
+                      We reserve the right to modify, suspend, or discontinue the service at any time, without prior notice and without liability to you. This includes, but is not limited to, temporary interruptions for maintenance or system upgrades.    <p>
+
+                    <h3>9.2. No Claims:</h3>
+                    <p>
+                      You agree that you will not hold us liable for any damages or losses resulting from the modification, suspension, or discontinuation of the service.
+                        <p>
+                  </section>
+
+                  <section>
+                    <h2>10. Dispute Resolution and Arbitration</h2>
+
+                    <h3>10.1. Mandatory Arbitration:</h3>
+                    <p>
+                      Any dispute, claim, or controversy arising out of or relating to your use of the service, including these Terms and Conditions, will be resolved through binding arbitration in accordance with the rules of our organisation. You waive your right to bring claims in court, including the right to a jury trial.
+                    </p>
+                    <!--END h3-10.1-->
+
+                    <h3>10.2. Class Action Waiver:</h3>
+                    <p>
+                      By accepting these terms, you agree that any claims you bring will be conducted on an individual basis and not as part of a class or consolidated action. You waive your right to participate in any class-action lawsuit.
+                    </p>
+                    <!--END h3-10.2-->
+
+                    <h2>11. Data Retention and Deletion</h2>
+
+                    <h3>11.1. Data Retention:</h3>
+                    <p>
+                      Your personal data will be retained for as long as necessary to fulfill the purposes for which it was collected, including for legal, regulatory, and accounting requirements.
+                    </p>
+                    <!--END h3-11.1-->
+
+                    <h3>11.2. Right to Deletion:</h3>
+                    <p>
+                      You have the right to request the deletion of your personal information at any time. Upon such a request, we will delete your data unless we are legally required to retain it for compliance purposes.
+                    </p>
+                    <!--END h3-11.2-->
+
+                    <h2>12. Intellectual Property and User-Generated Content</h2>
+
+                    <h3>12.1. License to Use Content:</h3>
+                    <p>
+                      By uploading or posting any content on the platform (including photos, text, and media), you grant us a non-exclusive, royalty-free, perpetual license to use, display, modify, and distribute such content for the purpose of providing the service.
+                    </p>
+                    <!--END h3-12.1-->
+
+                    <h3>12.2. User Responsibility for Content:</h3>
+                    <p>
+                      You represent and warrant that you own or have the necessary rights to the content you upload, and that it does not violate the intellectual property rights of any third party.
+                    </p>
+                    <!--END h3-12.2-->
+
+                    <h3>12.3. Copyright Violations:</h3>
+                    <p>
+                      We are not responsible for any claims related to copyright infringement or other legal violations arising from user-generated content. You agree to indemnify and hold us harmless for any such claims.
+                    </p>
+                    <!--END h3-12.3-->
+
+                    <h2>13. Refund Policy</h2>
+
+                    <h3>13.1. Non-Refundable Fees:</h3>
+                    <p>
+                      All fees for paid services are non-refundable unless required by law. If you choose to cancel your account or subscription, you will not be entitled to a refund for any unused portion of the service.
+                    </p>
+                    <!--END h3-13.1-->
+
+                    <h3>13.2. Refund Discretion:</h3>
+                    <p>
+                      We reserve the right to issue refunds at our sole discretion in cases of technical errors or service malfunctions.
+                    </p>
+                    <!--END h3-13.2-->
+
+                    <h2>14. No Liability for Losses</h2>
+                    <p>
+                      To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, revenues, data, or opportunities arising out of your use of the service. You acknowledge that the service is provided "as is" without any warranties of any kind, whether express or implied.
+                    </p>
+                    <p>
+                      By accepting these terms, you irrevocably waive any right to seek damages or file lawsuits against HealthyNikah, Match Now FZ-LLC in any jurisdiction worldwide. This waiver shall be construed as broadly as possible to include all forms of legal claims or liability, to the maximum extent permitted by law.
+                    </p>
+                    <!--END section-14-->
+
+                    <h2>15. Changes to Terms</h2>
+                    <p>
+                      We reserve the right to modify these Terms and Conditions at any time, with or without notice. It is your responsibility to review these terms regularly. Your continued use of the service after any changes to the Terms and Conditions constitutes your acceptance of the revised terms.
+                    </p>
+                    <!--END section-15-->
+
+                    <h2>16. Governing Law</h2>
+                    <p>
+                      These Terms and Conditions are governed by the laws of the United Arab Emirates, without regard to its conflict of law principles. Any legal disputes or claims arising from your use of the service will be subject to the exclusive jurisdiction of the courts of the United Arab Emirates.
+                    </p>
+                    <!--END section-16-->
+
+                    <h2>17. Contact Information</h2>
+                    <p>
+                      If you have any questions about these Terms and Conditions or the service, you can contact us via the links provided at <a href="https://www.healthynikah.com" style="color:#c3075f; display: inline ">www.healthynikah.com</a>.
+                    </p>
+                    <!--END section-17-->
+                  </section>
+                  <!--END section-->
+                  <div class="border">
+
+                  </div>
+                  <p><b>By clicking "I agree," you confirm that you have read, understood, and accepted these Terms and Conditions.</b></p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-btn" style="margin-top: 40px">
+              <button type="submit">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="footer-step">
+      <div class="container">
+        <div class="footer-step-child">
+          <ul>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- END! footer-step -->
+  </div>
+</ion-content>

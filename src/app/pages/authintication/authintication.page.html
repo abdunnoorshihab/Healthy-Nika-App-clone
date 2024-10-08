@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <div class="authentication-area">
+    <div class="authentication-area-top">
+      <div class="container">
+        <div class="authentication-area-top-child">
+          <div class="authentication-heart">
+            <img
+              src="/assets/images/brand/png/white-logo.png"
+              alt="white-logo"
+            />
+          </div>
+          <h3>HEALTHY NIKAH</h3>
+        </div>
+      </div>
+    </div>
+    <!-- END! authentication-area-top -->
+
+    <div class="authentication-area-top-bottom">
+      <div class="container max-width">
+        <div class="authentication-main">
+          <h4>MATCHMAKING FOR MUSLIM HEALTHCARE PROFESSIONALS</h4>
+          <button *ngIf="!isUser" routerLink="/login">Login</button>
+          <button *ngIf="isUser" routerLink="/home">Login</button>
+          <button routerLink="/registration">Sign Up</button>
+        </div>
+      </div>
+    </div>
+    <!-- END! authentication-area-top-bottom -->
+  </div>
+  <!-- END! authentication-area -->
+</ion-content>

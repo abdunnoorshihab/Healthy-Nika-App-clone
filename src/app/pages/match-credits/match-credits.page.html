@@ -1,0 +1,77 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+           <span class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>Your Match Credits</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="home-main-area">
+    <div class="container">
+      <div class="home-info-card" style="display: block">
+        <div class="home-info-card-main">
+          <div class="remaining-match-credits">
+            <div class="credits"> {{user?.credit}} </div>
+            <h1>MATCH CREDITS REMAINING</h1>
+          </div>
+          <div class="top-up-match-credits">
+            <h5>Top-up your match credits:</h5>
+            <div class="top-up-radio">
+              <label for="1" (click)="onSelect(12, 3)"><input id="1" name="1" type="radio"  [value]="3"><span>3 MATCH CREDITS (£12)</span></label>
+              <label for="2" (click)="onSelect(30, 10)"><input id="2" name="1" type="radio" [value]="10"><span>10 MATCH CREDITS (£30)</span></label>
+            </div>
+          </div>
+          <div class="top-up-payment-btn">
+            <button *ngIf="!isLoading" type="submit" (click)="onSubmit()">Make Payment</button>
+            <button *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; gap: 5px;padding: 12px" type="button"><span class="circle"></span>Please Wait..</button>
+          </div>
+          <div class="top-up-note">
+            <p><span>*Please note:</span> You will need match credits to
+              request other profiles on HealthyNikah. Your
+              credits are only used if a match request has
+              been accepted. All users are given 7 days to
+              respond to any outstanding match requests
+              and failure to do so, means the request will
+              expire and the match credit reinstated.</p>
+          </div>
+          <div class="top-up-back-btn">
+            <button type="submit" routerLink="/account">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

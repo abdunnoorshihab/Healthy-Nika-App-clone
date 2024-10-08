@@ -1,0 +1,47 @@
+@import'../../theme/stylesheets/variables';
+.footer-section{
+  width: 100%;
+  //padding: 15px 20px 0;
+
+  .sub-btn {
+    //margin-top: 74px;
+    width: 100%;
+
+    button {
+      background-color: #c40a5e;
+      color: #ffffff;
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: $font-en-montserrat;
+      font-style: normal;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 6.5px 15px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.sub-btn {
+  //margin-top: 74px;
+  width: 100%;
+
+  button {
+    background-color: #c40a5e;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: $font-en-montserrat;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 6.5px 15px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,66 @@
+@import'../../../../theme/stylesheets/variables';
+
+.bottom-nav {
+  position: relative;
+  z-index: 11;
+  background-color: $color-primary;
+  padding: 6.5px 10px;
+
+  .bottom-nav-main {
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+
+      li {
+        overflow: hidden;
+        position: relative; /* Ensure relative positioning for absolute dot */
+        height: 53px;
+        img {
+          width: 42px;
+          height: 42px;
+          object-fit: cover;
+          margin-inline: auto;
+        }
+
+        .dot {
+          position: absolute;
+          overflow: visible;
+          bottom: 0; /* Adjust distance from bottom */
+          left: 50%;
+          transform: translateX(-50%);
+          width: 10px;
+          height: 10px;
+          background-color: #FFFFFF;
+          border-radius: 50%;
+          display: none; /* Initially hide the dot */
+        }
+
+        &.active .dot {
+          display: block; /* Show the dot when li is active */
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 35px;
+          max-width: 35px;
+          height: 35px;
+          border: 0;
+          outline: 0;
+
+          svg {
+            min-width: 20px;
+            max-width: 20px;
+            height: 20px;
+            fill: #cf085b;
+          }
+        }
+      }
+    }
+  }
+}

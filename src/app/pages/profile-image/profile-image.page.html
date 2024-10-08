@@ -1,0 +1,82 @@
+<ion-content [fullscreen]="true">
+  <div class="registration-area">
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span routerLink="/account">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container">
+        <div class="registration-main">
+          <div class="registration-main-top">
+            <h2>Upload your photos</h2>
+            <p>
+              Please upload up to two photos of yourself. These will remain blurred and only made visible to potential
+              matches after a successful match has been made. <b>Note that your photos would only be viewed once</b>,
+              after which they will become blurred again. This is to maintain user privacy and to help determine
+              compatibility only.
+            </p>
+
+            <ul>
+              <li>
+                <button type="button" (click)="profileImagePicker.click()">
+                  Upload from camera roll
+                </button>
+              </li>
+            </ul>
+
+            <!-- Define the missing input fields with reference variables -->
+            <input
+              [hidden]="true"
+              #profileImagePicker
+              type="file"
+              (change)="fileChangeEvent($event)"
+              accept="image/*"
+            />
+
+            <input
+              [hidden]="true"
+              #profileImagePicker2
+              type="file"
+              (change)="fileChangeEvent($event, 0)"
+              accept="image/*"
+            />
+
+            <input
+              [hidden]="true"
+              #profileImagePicker3
+              type="file"
+              (change)="fileChangeEvent($event, 1)"
+              accept="image/*"
+            />
+
+            <div class="user-img">
+              <div class="user-img-child" (click)="profileImagePicker2.click()">
+                <img *ngIf="pickedImages[0]" [src]="pickedImages[0].image" alt="Picked Image" />
+                <button *ngIf="pickedImages[0]" (click)="removePickedImage($event, 0)" class="remove-btn">X</button>
+                <i *ngIf="!pickedImages[0]" class="fa-solid fa-plus"></i>
+              </div>
+
+              <div class="user-img-child" (click)="profileImagePicker3.click()">
+                <img *ngIf="pickedImages[1]" [src]="pickedImages[1].image" alt="Picked Image" />
+                <button *ngIf="pickedImages[1]" (click)="removePickedImage($event, 1)" class="remove-btn">X</button>
+                <i *ngIf="!pickedImages[1]" class="fa-solid fa-plus"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-btn">
+            <button type="button" (click)="uploadImage()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

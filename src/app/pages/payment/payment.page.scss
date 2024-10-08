@@ -1,0 +1,261 @@
+@import'../../../theme/stylesheets/variables';
+.registration-top-main{
+  display: flex;
+}
+.registration-area {
+  background-color: $color-white;
+
+  .registration-top {
+    background-color: $color-primary;
+    padding: 20px 20px 14px 20px;
+    border-radius: 0px 0px 10px 10px;
+
+    span {
+      color: $color-white;
+      font-size: 19px;
+      display: block;
+      margin-bottom: 15px;
+      padding-top: 9px;
+      padding-right: 10px;
+    }
+
+    h3 {
+      color: $color-white;
+      font-family: $font-en-montserrat;
+      font-size: 14px;
+      line-height: 37px;
+      font-style: normal;
+      // font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 5px rgb(0 0 0 / 20%);
+    }
+  }
+
+  .registration-main {
+    min-height: calc(100vh - 145px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px;
+
+    .form {
+      width: 100%;
+
+      .form-field {
+        margin-bottom: 20px !important;
+
+        label {
+          color: #a1a1a1;
+          font-family: $font-en-montserrat;
+          font-style: normal;
+          font-size: 16px;
+          margin-bottom: 12px;
+          display: block;
+          padding-left: 5px;
+        }
+
+        input,textarea {
+          font-family: $font-en-montserrat;
+          font-style: normal;
+          background-color: #e7e7e7;
+          width: 100%;
+          outline: none;
+          border: none;
+          padding: 13px 15px;
+          box-sizing: border-box;
+          font-size: 14px;
+          color: #a1a1a1;
+          border-radius: 30px;
+
+          &:-webkit-autofill {
+            border: none;
+            -webkit-text-fill-color: #a1a1a1;
+            -webkit-box-shadow: 0 0 0px 1000px #e7e7e7 inset;
+            transition: background-color 5000s ease-in-out 0s;
+            font-family: $font-en-montserrat;
+            font-size: 16px;
+          }
+        }
+        textarea{
+          border-radius: 8px;
+        }
+
+        .mat-radio{
+          input{
+            display: block;
+            appearance: none;
+            min-width: 18px;
+            width: 18px;
+            height: 18px;
+            padding: 0px;
+            background-color: $color-white;
+            border: 1px solid $color-primary;
+            position: relative;
+            &::after{
+              content: "";
+              position: absolute;
+              top: 4px;
+              left:4px;
+              width: 8px;
+              height: 8px;
+              background-color: $color-primary;
+              border-radius: 50%;
+              // visibility: hidden;
+              // opacity: 0;
+            }
+            &:checked::after{
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+          label{
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+            font-size: 15px;
+          }
+        }
+
+        .password {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          input {
+            border-radius: 30px 0px 0px 30px;
+            padding-right: 0px;
+          }
+
+          span {
+            width: 60px;
+            background-color: #e7e7e7;
+            color: #a1a1a1;
+            height: 45px;
+            border-radius: 0px 30px 30px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+          }
+        }
+      }
+
+      .forgot-area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block: 40px 20px;
+
+        a {
+          color: #3685cd;
+          font-family: $font-en-montserrat;
+          font-style: normal;
+          font-size: 15px;
+          display: block;
+          line-height: 20px;
+        }
+
+        label {
+          color: #3685cd;
+          font-family: $font-en-montserrat;
+          font-style: normal;
+          font-size: 15px;
+          display: block;
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+
+          input {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #3685cd;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+              content: "\f00c";
+              font-family: 'Font Awesome 5 Free';
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              background-color: #3685cd;
+              color: $color-white;
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 13px;
+              font-weight: bold;
+              visibility: hidden;
+              opacity: 0;
+            }
+
+            &:checked::after {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .sub-btn {
+        margin-top: 10px;
+
+        button {
+          background-color: $color-primary;
+          color: $color-white;
+          max-width: 300px;
+          width: 100%;
+          border: none;
+          outline: none;
+          font-family: $font-en-montserrat;
+          font-style: normal;
+          font-size: 18px;
+          list-style: 22px;
+          padding: 13px 15px;
+          border-radius: 30px;
+          text-transform: uppercase;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media(max-width:400px) {
+  .registration-area {
+
+    .registration-main {
+      padding: 20px 15px;
+      .form {
+        .form-field {
+          margin-bottom: 20px !important;
+        }
+
+        .sub-btn {
+          button {
+            max-width: 100%;
+            font-size: 17px;
+            list-style: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.hint{
+  color: #a1a1a1;
+  font-family: $font-en-montserrat;
+  font-size: 11px;
+  line-height: 14px;
+  display: block;
+  margin-top: 6px;
+}

@@ -1,0 +1,9 @@
+@import'../../../theme/stylesheets/variables';
+@import'../../../theme/stylesheets/header-two.scss';
+@import "../../../theme/stylesheets/loading";
+.search{
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+

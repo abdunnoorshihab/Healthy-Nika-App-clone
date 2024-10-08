@@ -1,0 +1,309 @@
+@import '../../../theme/stylesheets/variables';
+
+/* --- profile-list-header --- */
+.profile-list-header {
+  background-color: $color-primary;
+  padding: 10px 10px;
+}
+
+/* --- profile-list-header-child --- */
+.profile-list-header-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .profile-list-header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+
+    img {
+      max-width: 45px;
+      width: 100%;
+    }
+
+    h1 {
+      font-family: $font-en-montserrat;
+      font-size: 17px;
+      color: #fff;
+      font-weight: 600;
+
+    }
+  }
+
+  .profile-list-header-right {
+    button {
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+
+      img {
+        max-width: 20px;
+      }
+    }
+  }
+}
+
+.home-main-area {
+  //overflow-y: auto;
+  //height: calc(100vh - 101px);
+  //scroll-snap-type: y mandatory;
+  //scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* --- home-info-card --- */
+  .home-info-card {
+
+    //box-sizing: border-box;
+    //// background-color: $color-white;
+    //height: calc(100vh - 101px);
+    //overflow-y: auto;
+    // background-color: #fdd7ee93;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    .home-info-card-main {
+      padding: 10px 10px 20px 10px;
+      // height: calc(100vh - 153px);
+      // overflow-y: scroll;
+
+      /* --- home-info-card-top --- */
+      .home-info-card-top {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        h1 {
+          // color: $color-primary;
+          font-family: $font-en-montserrat;
+          font-size: 24px;
+          // text-transform: uppercase;
+          font-weight: 700;
+          text-align: center;
+          padding-top: 25px;
+          padding-bottom: 10px;
+        }
+
+      }
+    }
+
+  }
+}
+
+.all-filter-box {
+  // border: 1px solid red;
+}
+
+.age-section {
+  margin-top: 5px;
+
+  .age-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      font-family: $font-en-montserrat;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    p {
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  .age-button {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+
+    button {
+      outline: none;
+      padding: 10px 25px;
+      color: #000000;
+      background-color: #ffffff;
+      border-radius: 7px;
+
+    }
+  }
+}
+
+.border-dashed {
+  border: 1px dashed $color-primary;
+}
+
+.button-bg-color {
+  background-color: $color-primary !important;
+  color: #ffffff !important;
+}
+
+
+.ethnicity-section {
+  margin-top: 30px;
+
+  .ethnicity-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      font-family: $font-en-montserrat;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    p {
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  .ethnicity-button {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+
+    button {
+      outline: none;
+      // padding: 10px 15px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #000000;
+      background-color: #ffffff;
+      border-radius: 7px;
+
+    }
+  }
+
+
+}
+
+.show-more {
+  margin-top: 5px;
+
+  p {
+    color: $color-primary;
+    cursor: pointer;
+  }
+}
+
+
+.profession-section {
+  margin-top: 30px;
+
+  .profession-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      font-family: $font-en-montserrat;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    p {
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  .profession-button {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+
+    button {
+      outline: none;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #000000;
+      text-wrap: nowrap;
+      background-color: #ffffff;
+      border-radius: 7px;
+
+    }
+  }
+
+  .show-more {
+    margin-top: 5px;
+
+    p {
+      color: $color-primary;
+    }
+  }
+}
+
+.see-fifty-button {
+  max-width: 150px;
+  margin: auto;
+  width: 100%;
+  padding: 10px 15px;
+  text-align: center;
+  background: $color-primary;
+  border-radius: 5px;
+  margin-top: 20px;
+
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 428px) {
+  //.age-button{
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  border-dashed{
+  //    width: 36px;
+  //  }
+  //}
+  //.profession-section .profession-button{
+  //  //grid-template-columns: repeat(3, 1fr);
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  border-dashed{
+  //    width: 130px;
+  //  }
+  //}
+  //
+  //.ethnicity-section .ethnicity-button{
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  border-dashed{
+  //    width: 130px;
+  //  }
+  //}
+
+
+  .age-button {
+    display: grid !important;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+
+    .border-dashed {
+      padding: 9px 20px;
+    }
+  }
+  .profession-section .profession-button {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ethnicity-section .ethnicity-button {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

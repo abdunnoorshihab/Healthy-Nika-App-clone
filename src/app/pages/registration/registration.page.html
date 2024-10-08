@@ -1,0 +1,77 @@
+<ion-content [fullscreen]="true">
+  <div class="registration-area">
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+
+          <h3>HEALTHY NIKAH</h3>
+          <p>CREATE YOUR PROFILE</p>
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="container max-with">
+        <div class="registration-main">
+          <h4>What is your gender?</h4>
+
+          <ul>
+            <li>
+              <button (click)="onGetUserGender('male')">
+                <small>
+                  <img
+                    src="./assets/images/brand/png/on1.png"
+                    alt="man-image"
+                  />
+                </small>
+                I am male
+              </button>
+            </li>
+            <li>
+              <button (click)="onGetUserGender('female')">
+                <small>
+                  <img
+                    src="./assets/images/brand/png/on2.png"
+                    alt="female-image"
+                  />
+                </small>
+                I am female
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+
+    <div class="footer-step">
+      <div class="container">
+        <div class="footer-step-child">
+          <ul>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+            <li>
+              <i class="fa-regular fa-heart"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- END! footer-step -->
+  </div>
+</ion-content>

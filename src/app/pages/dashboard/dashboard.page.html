@@ -1,0 +1,48 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="header-main back">
+      <div class="toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Dashboard</ion-title>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="dashboard-area">
+    <div class="container">
+      <div class="dashboard-main">
+        <div class="heart-icon">
+          <img src="./assets/images/brand/png/heart.png" alt="">
+        </div>
+        <div class="dashboard-card" routerLink="/credits">
+          <h3>Match Credits:</h3>
+          <span>{{userDashboard?.totalCredit}}</span>
+          <h3>Buy More</h3>
+        </div>
+
+        <div class="dashboard-card card1" [routerLink]="['/request-list']" [queryParams]="{
+              user: userId,
+            }">
+          <h3>Profiles requested by me:</h3>
+          <span>{{userDashboard?.totalRequestByMe}}</span>
+        </div>
+        <div class="dashboard-card card1" [routerLink]="['/request-list']" [queryParams]="{
+              requestTo: userId,
+            }">
+          <h3>Profiles who have requested me</h3>
+          <span>{{userDashboard?.totalRequestToMe}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>

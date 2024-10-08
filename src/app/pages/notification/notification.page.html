@@ -1,0 +1,133 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="dashboard-activity-title">
+            <h2>Notifications</h2>
+            <ion-button *ngIf="!isSelecting" (click)="startSelection()">Select</ion-button>
+          </div>
+        </div>
+
+      <div class="button-area">
+        <!-- Show Select Button -->
+        <p *ngIf="isSelecting" (click)="selectAll()">Select All</p> <!-- Show Select All Button -->
+        <p *ngIf="isSelecting" (click)="cancelSelection()">Cancel</p> <!-- Show Cancel Button -->
+      </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-------------- OLD NOTIFICATION CODE  START-------------------------->
+<!--<div class="notification-area" *ngIf="notifications && notifications.length">-->
+<!--    <div class="container">-->
+
+<!--      <div class="notification-main">-->
+<!--        <div class="notification" *ngFor="let data of notifications" (click)="updateNotificationDB(data?._id, true,data?.status)"-->
+<!--          [class.isRead]="!data?.isReads">-->
+<!--          <div class="notification-left">-->
+<!--            <img [src]="data?.user?.profileImg ?? './assets/avatar/user-young.jpg'" alt="">-->
+<!--          </div>-->
+<!--          <div class="notification-right">-->
+<!--            <div class="notification-top">-->
+<!--              <span>{{calculateTimeDifference(data?.createdAt)}} ago</span>-->
+<!--            </div>-->
+<!--            <h4 *ngIf="data?.status !== 'Accepted'" ><span>{{data?.user?.userId}}</span> has-->
+<!--              send you a request!</h4>-->
+
+<!--            <h4 *ngIf="data?.status === 'Accepted'" ><span>{{data?.user?.userId}}</span> has-->
+<!--              accept your request!</h4>-->
+<!--          </div>-->
+
+
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+  <!-------------- OLD NOTIFICATION CODE END-------------------------->
+
+<!--  <p *ngFor="let d of data">{{getTime(d?.expireDate , d?.expireTime )}}</p>-->
+<!--  <ion-content>-->
+    <ion-list #messageList *ngIf="notifications && notifications.length">
+      <ion-item-sliding *ngFor="let data of notifications" >
+        <ion-item detail>
+          <ion-checkbox slot="start" *ngIf="isSelecting" [(ngModel)]="data.isSelected"  class="custom-checkbox"></ion-checkbox> <!-- Select individual notification -->
+          <ion-label class="notification-item">
+            <div class="read-unread"  [class]="(!data?.isReads) ? 'read': 'unread'"></div>
+            <div  [class]="(!data?.isReads) ? 'content': 'content-2'">
+              <p *ngIf="data?.status === 'Pending'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'routing')">{{data?.user?.userId}} has sent you a match request! You have {{data?.expireDays ?? '0'}} days to accept or decline.</p>
+              <p *ngIf="data?.status === 'Unsuccess'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'routing')">{{data?.user?.userId}} has declined your match request. May Allah grant you what`s best!</p>
+              <p *ngIf="data?.status === 'Expired User'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'routing')">Your Match Request from {{data?.user?.userId}} has expired.</p>
+              <p *ngIf="data?.status === 'Expired Requester'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'routing')">Your Match Request to {{data?.user?.userId}} has now expired. Your match credit has been reinstated.</p>
+              <p *ngIf="data?.status === 'TopUp'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'TopUp')">You have no match credit remaining. Top up now!</p>
+              <p *ngIf="data?.status === 'Accepted'" (click)="updateNotificationDB(data?._id, true,data?.user?.userId, 'routing')"> Congratulations! {{data?.user?.userId}} has accepted your match
+                request!</p>
+            </div>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteItem($event,data?._id)">Clear</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+<!--  </ion-content>-->
+ <div class="no-notification-area" *ngIf="!notifications.length">
+    <img src="/assets/images/png/no-notification.png" alt="">
+  </div>
+
+<!--  <ion-footer>-->
+<!--    <ion-toolbar>-->
+<!--      <ion-row>-->
+<!--        <ion-col size="6">-->
+<!--          <ion-button expand="block" (click)="markAsRead()">Mark as Read</ion-button>-->
+<!--        </ion-col>-->
+<!--        <ion-col size="6">-->
+<!--          <ion-button expand="block" color="danger" (click)="clearSelected()">Clear</ion-button>-->
+<!--        </ion-col>-->
+<!--      </ion-row>-->
+<!--    </ion-toolbar>-->
+<!--  </ion-footer>-->
+</ion-content>
+
+
+<!--<div class="footer-fixed">-->
+<!--<button>Mark as Read</button>-->
+<!--<button>Clear</button>-->
+<!--</div>-->
+
+<div class="footer-fixed" *ngIf="isSelecting">
+<!--  <ion-toolbar>-->
+    <ion-row>
+      <ion-col size="6">
+        <ion-button  [disabled]="!anySelected()"  expand="block" (click)="markAsRead()">Mark as Read</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button  [disabled]="!anySelected()"  expand="block"  (click)="clearSelected()">Clear</ion-button>
+      </ion-col>
+    </ion-row>
+<!--  </ion-toolbar>-->
+</div>
+<app-bottom-nav></app-bottom-nav>

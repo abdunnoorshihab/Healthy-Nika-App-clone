@@ -1,0 +1,83 @@
+<!--<div class="header">-->
+<!--  <div class="container">-->
+<!--    <div class="header-main">-->
+<!--      <div class="logo">-->
+<!--        <h3>HN</h3>-->
+<!--      </div>-->
+<!--      <div class="page-name">-->
+<!--        <h4>FAQ</h4>-->
+<!--      </div>-->
+<!--      <div class="notification">-->
+<!--        <img src="./assets/images/brand/png/notification.png" alt="">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<ion-header>-->
+<!--  <ion-toolbar>-->
+<!--    <ion-buttons slot="start">-->
+<!--      <ion-back-button defaultHref="/"></ion-back-button>-->
+<!--    </ion-buttons>-->
+<!--    <ion-title>Page Title</ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+           <span class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>FAQs</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="faq-area">
+    <div class="container">
+      <div class="faq-main">
+        <div class="title">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <!--        <div class="heart-icon">-->
+        <!--          <img src="./assets/images/brand/png/heart.png" alt="">-->
+        <!--        </div>-->
+        <div class="faq-card" *ngFor="let data of faqData;let i=index;">
+          <div class="faq-button" (click)="toggle(i)">
+            <h3>{{data?.title}}</h3>
+            <i class="fa-solid" [class.fa-plus]="!data.isExpanded" [class.fa-minus]="data.isExpanded"></i>
+          </div>
+          <p [@expandCollapse]="data.isExpanded ? 'expanded' : 'collapsed'">{{data?.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

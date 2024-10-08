@@ -1,0 +1,129 @@
+{
+    "data":[
+      {
+        "_id":"1",
+        "name":"Docks & Stands",
+        "image":"./assets/images/temp/image/deb9164a404a4eea223f194dd7b3a146.jpg"
+      },
+      {
+       "_id":"2",
+       "name":"T-shirts",
+       "image":"./assets/images/temp/image/f7ead6ff22a9cf980ac505a1bb4ec8ef.jpg"
+     },
+     {
+       "_id":"3",
+       "name":"Phone Cases",
+       "image":"./assets/images/temp/image/f6eb30962feba305d0ae2744ca7aaa56.jpg"
+     },
+     {
+       "_id":"4",
+       "name":"Ankle Boots",
+       "image":"./assets/images/temp/image/6cb6750cd0e7f0d211aa6b9e698d7375.jpg"
+     },
+     {
+       "_id":"5",
+       "name":"Facial Cleansers",
+       "image":"./assets/images/temp/image/6a3c481a7e05c1d20b8c0fd039d0dc2b.jpg"
+     },
+     {
+       "_id":"6",
+       "name":"Moisturizers",
+       "image":"./assets/images/temp/image/7038c2934f3d0b519fe652461f010fe9.jpg"
+     },
+     {
+       "_id":"7",
+       "name":"Cloths & Towels",
+       "image":"./assets/images/temp/image/21cba16a962e18c0eedd11d39f1eaa83.jpg"
+     },
+     {
+       "_id":"8",
+       "name":"Potatoes",
+       "image":"./assets/images/temp/image/9f6674bb55befc2a0a6abac60ead5760.jpg"
+     },
+     {
+       "_id":"9",
+       "name":"Rings",
+       "image":"./assets/images/temp/image/533e0159d3036e8cdc9dfad8fbfa642e.jpg"
+     },
+     {
+       "_id":"10",
+       "name":" Wireless Earbuds",
+       "image":"./assets/images/temp/image/d583b221df6ec5ff3d9bd311788081ad.jpg"
+     },
+     {
+       "_id":"11",
+       "name":"Washing Powder",
+       "image":"./assets/images/temp/image/b0cfa20e5dc78ac2ebf186c0e701ca0d.jpg"
+     },
+     {
+       "_id":"12",
+       "name":"Cloths & Towels",
+       "image":"./assets/images/temp/image/21cba16a962e18c0eedd11d39f1eaa83.jpg"
+     },
+     {
+       "_id":"13",
+       "name":"Potatoes",
+       "image":"./assets/images/temp/image/9f6674bb55befc2a0a6abac60ead5760.jpg"
+     },
+     {
+       "_id":"14",
+       "name":"Rings",
+       "image":"./assets/images/temp/image/533e0159d3036e8cdc9dfad8fbfa642e.jpg"
+     },
+     {
+       "_id":"15",
+       "name":" Wireless Earbuds",
+       "image":"./assets/images/temp/image/d583b221df6ec5ff3d9bd311788081ad.jpg"
+     },
+     {
+       "_id":"16",
+       "name":" Wireless Earbuds",
+       "image":"./assets/images/temp/image/d583b221df6ec5ff3d9bd311788081ad.jpg"
+     },
+     {
+       "_id":"17",
+       "name":"Docks & Stands",
+       "image":"./assets/images/temp/image/deb9164a404a4eea223f194dd7b3a146.jpg"
+     },
+     {
+      "_id":"18",
+      "name":"T-shirts",
+      "image":"./assets/images/temp/image/f7ead6ff22a9cf980ac505a1bb4ec8ef.jpg"
+    },
+    {
+      "_id":"19",
+      "name":"Phone Cases",
+      "image":"./assets/images/temp/image/f6eb30962feba305d0ae2744ca7aaa56.jpg"
+    },
+    {
+      "_id":"20",
+      "name":"Ankle Boots",
+      "image":"./assets/images/temp/image/6cb6750cd0e7f0d211aa6b9e698d7375.jpg"
+    },
+    {
+      "_id":"21",
+      "name":"Facial Cleansers",
+      "image":"./assets/images/temp/image/6a3c481a7e05c1d20b8c0fd039d0dc2b.jpg"
+    },
+    {
+      "_id":"22",
+      "name":"Moisturizers",
+      "image":"./assets/images/temp/image/7038c2934f3d0b519fe652461f010fe9.jpg"
+    },
+    {
+      "_id":"23",
+      "name":"Cloths & Towels",
+      "image":"./assets/images/temp/image/21cba16a962e18c0eedd11d39f1eaa83.jpg"
+    },
+    {
+      "_id":"24",
+      "name":"Potatoes",
+      "image":"./assets/images/temp/image/9f6674bb55befc2a0a6abac60ead5760.jpg"
+    },
+    {
+      "_id":"25",
+      "name":"Rings",
+      "image":"./assets/images/temp/image/533e0159d3036e8cdc9dfad8fbfa642e.jpg"
+    }
+    ]
+}

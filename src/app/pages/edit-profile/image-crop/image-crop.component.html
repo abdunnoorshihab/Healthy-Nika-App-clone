@@ -1,0 +1,30 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Image Crop</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSaveImage()">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<image-cropper
+  class="image-cropper"
+  [roundCropper]="true"
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  format="jpeg"
+  [resizeToWidth]="600"
+  [resizeToHeight]="600"
+  [imageQuality]="95"
+  (imageCropped)="imageCropped($event)"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<!--<div class="upload-dialog-action">-->
+<!--  <button style="background-color: red;"  mat-raised-button color="warn" class="btn btn-cancel" (click)="onCloseDialogue()">Close</button>-->
+<!--  <button style="background-color: rgb(4, 170, 4);"  mat-raised-button color="primary" class="btn btn-save" (click)="onSaveImage()">Save</button>-->
+<!--</div>-->

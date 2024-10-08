@@ -1,0 +1,227 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+           <span class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <img
+                src="./assets/images/brand/png/white-logo.png"
+                alt="white-logo"
+              />
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="home-main-area" *ngIf="!isLoading">
+    <div class="container">
+      <div class="home-info-card" style="display: block">
+        <div class="home-info-card-main" [class.profile-list-part-card-man]="user?.gender === 'male'">
+          <!-- Start! profile-info-card-top -->
+<!--          <swiper  [config]="config" >-->
+<!--            <ng-template *ngFor="let d of images" swiperSlide>-->
+<!--              <img [src]="d?.img" alt="" (click)="openPreview(images)">-->
+<!--            </ng-template>-->
+<!--          </swiper>-->
+          <div class="profile-info-card-top">
+
+            <h1>Profile ID: {{user?.userId}}</h1>
+
+            <div class="profile-info-card-top-image" *ngIf="!user?.profileImg?.length">
+              <img class="default-img"
+                   [src]="user?.gender ==='female' ? './assets/images/brand/png/on2.png' : './assets/images/brand/png/on1.png'"
+                   alt="profile-image"
+              />
+            </div>
+
+            <div class="profile-info-card-top-image" (click)="openPreview()" *ngIf="user?.profileImg?.length">
+              <p>Click to view</p>
+              <img class="user-image"
+                [src]="user?.profileImg[0] ?? '/assets/images/default.jpg'"
+                alt="profile-image"
+              />
+            </div>
+            <div class="profile-info-card-top-button" *ngIf="!requestMatchData && !requestToMatchData">
+              <button *ngIf="!loading" class="btn-active" style="min-width: 194.5px" (click)="onRequest($event,user,1,user?._id)">Request match</button>
+              <button *ngIf="loading" class="btn-active" style="min-width: 194.5px">Please wait...</button>
+            </div>
+
+            <div class="profile-info-card-top-button" *ngIf="isUnsuccessUser">
+              <button *ngIf="!loading" class="btn-active" style="min-width: 194.5px" (click)="onRequest($event,user,1,user?._id)">Request Again</button>
+              <button *ngIf="loading" class="btn-active" style="min-width: 194.5px">Please wait...</button>
+            </div>
+
+            <div class="profile-info-card-top-button" *ngIf="isExpiredUser">
+              <button *ngIf="!loading" class="btn-active" style="min-width: 194.5px" (click)="onRequest($event,user,1,user?._id)">Request Again</button>
+              <button *ngIf="loading" class="btn-active" style="min-width: 194.5px">Please wait...</button>
+            </div>
+
+            <div class="accept-btn">
+              <div class="profile-info-card-top-accept-button" *ngIf=" requestToMatchData && requestToMatchData.status ==='Pending'">
+                <button class="btn-awaiting1"  (click)="onAcceptAndIgnoreRequest(requestToMatchData?._id,'Accepted')">Accept match</button>
+              </div>
+              <div class="profile-info-card-top-accept-button" *ngIf=" requestToMatchData && requestToMatchData.status ==='Pending'">
+                <button class="btn-awaiting2" (click)="onAcceptAndIgnoreRequest(requestToMatchData?._id,'Ignore')">Decline match</button>
+              </div>
+            </div>
+
+<!--            <div class="profile-info-card-top-button" *ngIf=" requestToMatchData && requestToMatchData.status ==='Pending'">-->
+<!--              <button class="btn-awaiting" >Awaiting response</button>-->
+<!--            </div>-->
+
+
+
+            <div class="profile-info-card-top-button" *ngIf="requestMatchData && requestMatchData.status ==='Pending' ">
+              <button class="btn-awaiting" >Awaiting response</button>
+            </div>
+          </div>
+          <!-- END! profile-info-card-top -->
+
+          <!-- Strart! profile-info-card-mid -->
+          <div class="profile-info-card-mid" *ngIf="requestMatchData && requestMatchData.status ==='Success' || requestToMatchData && requestToMatchData.status ==='Success'">
+            <h1>Successful Match!</h1>
+            <p>Please remember to adhere to Islamic rules and regulations when
+              conversing with your match. We strongly advise to involve parents at the
+              earliest possible stage. May Allah grant you a righteous spouse! Ameen.
+            </p>
+            <h3><span>Name:</span> {{user?.name}}</h3>
+            <h3><span>Number:</span> {{user?.phoneNo}}</h3>
+            <h3><span>Email:</span> {{user?.email}}</h3>
+            <h3 *ngIf="user?.parentPhone"><span>Parent's Number:</span> {{user?.parentPhone}}</h3>
+          </div>
+
+<!--          <div class="profile-info-card-mid" *ngIf="requestMatchData && requestMatchData.status ==='Success'">-->
+<!--            <h1>Successful Match!</h1>-->
+<!--            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi neque rem eius soluta qui iste ipsum officiis. Odio sapiente dolorum ex quisquam velit! Aut esse facere ullam a eligendi aspernatur.</p>-->
+<!--            <h3><span>Name:</span> {{user?.name}}</h3>-->
+<!--            <h3><span>Number:</span> {{user?.phoneNo}}</h3>-->
+<!--            <h3><span>Parent's Number:</span> {{user?.parentPhone}}</h3>-->
+<!--          </div>-->
+          <!-- End! profile-info-card-mid -->
+          <!-- Strart! profile-info-card-bottom -->
+          <div class="profile-info-card-bottom">
+            <div class="profile-info-card-card">
+              <h5>Ethnicity & Residence:</h5>
+              <!-- <p>{{data?.ethnicity}}</p> -->
+<!--              <p>{{ user?.cityzenShip === user?.ethnicity ? user?.cityzenShip : user?.cityzenShip + ' ' + user?.ethnicity }} {{user?.secondEthnicity ?? user?.secondEthnicity}} living in {{user?.cityOfResidence ?? user?.cityOfResidence}} {{user?.countryOfResidence ?? user?.countryOfResidence}}</p>-->
+              <p>
+                {{ (user?.cityzenShip === user?.ethnicity && user?.ethnicity === user?.secondEthnicity)
+                ? user?.cityzenShip
+                : (user?.cityzenShip !== user?.ethnicity && user?.cityzenShip === user?.secondEthnicity)
+                  ? user?.cityzenShip + ' ' + user?.ethnicity
+                  : user?.cityzenShip + ' ' + user?.secondEthnicity }} living in {{user?.cityOfResidence ?? user?.cityOfResidence}}, {{user?.countryOfResidence ?? user?.countryOfResidence}}
+              </p>
+            </div>
+
+            <div class="profile-info-card-card">
+              <h5>Age and Height:</h5>
+              <p>
+                {{user?.dateOfBirth | years }}
+                <br />
+                {{user?.height | splitAdd: '.' ?? 'N/A' }}
+              </p>
+            </div>
+
+
+            <div class="profile-info-card-card">
+              <h5>Educational Qualification:</h5>
+
+              <p>{{user?.educationLevel ?? 'N/A'}}</p>
+            </div>
+
+            <div class="profile-info-card-card">
+              <h5>Current Work and Grade:</h5>
+              <!-- <p>{{data?.professionalDetails}}</p> -->
+              <p>{{ user?.profession === 'Other' ?  (user?.otherProfession ? user?.otherProfession : 'N/A') : user?.profession}}</p>
+            </div>
+
+            <div class="profile-info-card-card">
+              <h5>Islamic Practice:</h5>
+
+              <p *ngIf="user?.gender === 'female'">Hijab: {{user?.hijab ?? 'N/A'}}</p>
+              <!-- <p>{{data?.islamicPractice}}</p> -->
+              <p>{{user?.islamicPractice ?? 'N/A'}}</p>
+            </div>
+
+            <div class="profile-info-card-card">
+              <h5>About Me:</h5>
+              <!-- <p>{{data?.aboutMe}}</p> -->
+              <p>{{user?.selfSummery ?? 'N/A'}}</p>
+            </div>
+
+<!--            <div class="profile-info-card-card">-->
+<!--              <h5>Professional details</h5>-->
+<!--              &lt;!&ndash; <p>{{data?.aboutMe}}</p> &ndash;&gt;-->
+<!--              <p>{{ user?.profession === 'Other' ?  (user?.otherProfession ? user?.otherProfession : 'N/A') : user?.profession}}</p>-->
+<!--            </div>-->
+
+            <div class="profile-info-card-card">
+              <h5>What I'm looking for:</h5>
+              <!-- <p>{{data?.whatILooking}}</p> -->
+              <p>{{user?.aboutMe ?? 'N/A'}}</p>
+            </div>
+            <div class="profile-info-card-card">
+              <h5>Profession you are looking for:</h5>
+              <!-- <h6>{{data?.profession}}</h6> -->
+              <h6><b>{{user?.partnerProfession ?? 'N/A'}}</b></h6>
+              <h6>{{user?.otherPartnerProfession}}</h6>
+            </div>
+
+            <div class="profile-info-card-card">
+              <h5>Any other important information:</h5>
+               <p>Marital Status: {{user?.maritalStatus ?? 'N/A'}}</p>
+              <p>{{user?.additionalInformation ?? 'N/A'}}</p>
+            </div>
+
+<!--            <div class="profile-info-card-card">-->
+<!--              <h5>Marital Status:</h5>-->
+<!--              <p>-->
+<!--                {{user?.maritalStatus ?? 'N/A'}}-->
+<!--              </p>-->
+<!--            </div>-->
+
+          </div>
+          <!-- End! profile-info-card-bottom -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="loading1" *ngIf="isLoading">
+    <div class="abgne-loading-20140104-2">
+      <div class="loading"></div>
+      <div class="word">
+        <img src="/assets/images/temp/png/heart-bg-remove.png" alt="Guardian Logo">
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

@@ -1,0 +1,88 @@
+<!-- <div class="header">
+  <div class="container">
+    <div class="header-main">
+      <img
+        routerLink="/authintication"
+        src="./assets/images/brand/png/return.png"
+        alt=""
+      />
+    </div>
+  </div>
+</div> -->
+<ion-content [fullscreen]="true" class="no-scroll">
+  <div class="login-area">
+    <div class="login-area-top">
+      <div class="back-button">
+        <span  (click)="goBack()">
+          <i class="fa-solid fa-arrow-left"></i>
+        </span>
+      </div>
+      <div class="container">
+        <div class="login-area-top-child">
+          <div class="login-heart">
+            <img src="./assets/images/brand/png/white-logo.png" alt="white-logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! login-area-top -->
+
+    <div class="login-area-bottom">
+      <div class="container">
+        <div class="login-area-bottom-child">
+          <div class="login-top">
+            <h3>HEALTHY NIKAH</h3>
+            <p>MATCHMAKING FOR MUSLIM HEALTHCARE PROFESSIONALS</p>
+          </div>
+
+          <div class="login-sign-top">
+            <h3>SIGN IN TO CONTINUE</h3>
+          </div>
+
+          <form (ngSubmit)="onSubmit()" [formGroup]="dataForm" autocomplete="off" style="width: 100%">
+            <div class="form">
+              <div class="form-field">
+                <input
+                  [class]="dataForm.get('username').touched && dataForm.get('username').invalid ? 'invalid' :''"
+                  formControlName="username"
+                  type="email"
+                  placeholder="Email"
+                />
+                <small *ngIf="dataForm.get('username').touched && dataForm.get('username').invalid">*Field required</small>
+              </div>
+
+              <div class="form-field form-field-second">
+                <div class="password" [class]="dataForm.get('password').touched && dataForm.get('password').invalid ? 'password-invalid' :''">
+                  <input [attr.type]="isShowPass ? 'text' : 'password'" type="password" placeholder="Password" formControlName="password" />
+                  <span (click)="onShowPassword()"><ion-icon [name]="isShowPass ? 'eye':'eye-off'"></ion-icon></span>
+                </div>
+                <small *ngIf="dataForm.get('password').touched && dataForm.get('password').invalid">*Field required</small>
+              </div>
+
+              <div class="forgot-area">
+                <div class="forgot-left">
+                  <label for="rem">
+                    <input formControlName="remember" type="checkbox" id="rem" />Remember Me
+                  </label>
+                </div>
+              </div>
+
+              <div class="sub-btn">
+                <button *ngIf="!isLoading">LOGIN</button>
+                <button *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center" type="button"><span class="circle"></span></button>
+              </div>
+
+              <div class="forgot-password">
+                <a routerLink="/reset-password">Forgot Password?</a>
+              </div>
+            </div>
+          </form>
+          <div class="signup-container">
+            Don’t have an account? <a routerLink="/registration">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! login-area-bottom -->
+  </div>
+</ion-content>

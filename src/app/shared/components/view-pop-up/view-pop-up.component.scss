@@ -1,0 +1,42 @@
+@import '../../../../theme/stylesheets/variables';
+
+.view-box{
+    height:fit-content;
+    width: 200px;
+    padding: 15px 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: $box-shadow-primary;
+    h3 {
+        font-family: $font-en-poppins;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+        text-align: center;
+        margin-bottom: 5px !important;
+    }
+    p {
+        text-align: center;
+        font-family: $font-en-poppins;
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 16px;
+        text-wrap: wrap;
+        margin-bottom: 10px !important;
+    }
+    .view-btns{
+        display: flex;
+        justify-content: space-around;
+        button{
+            width: 45%;
+            background-color: $color-primary;
+            padding: 6px 8px;
+            border-radius: 5px;
+            color: white;
+            font-family: $font-en-montserrat;
+            font-size: 10px;
+            font-weight: 500;
+            text-align: center;
+          }
+    }
+}

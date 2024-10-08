@@ -1,0 +1,123 @@
+@import'../../../theme/stylesheets/registration-header';
+@import'../../../theme/stylesheets/variables';
+@import'../../../theme/stylesheets/step';
+@import'../../../theme/stylesheets/next-button';
+.container{
+  max-width: 380px;
+  //margin: 0 auto;
+}
+.registration-area {
+  background-color: $color-white;
+
+
+  .registration-main {
+    min-height: calc(100vh - 178px);
+    padding: 20px 12px 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .registration-main-top {
+      h2 {
+        font-family: $font-en-montserrat;
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 22px;
+        text-align: center;
+        margin-top: 10px !important;
+      }
+
+      p {
+        font-family: $font-en-montserrat;
+        color: #000000;
+        font-weight: 500;
+        text-align: center;
+        font-size: 13px;
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        line-height: 20px;
+        max-width: 320px;
+        margin-inline: auto !important;
+
+        b {
+          font-size: 14px;
+        }
+      }
+
+      .user-img {
+        margin-bottom: 34px;
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+
+        img {
+          width: 100%;
+          margin-inline: auto;
+        }
+
+        .user-img-child {
+          border: 2px solid $color-primary;
+          height: 174px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+
+          img {
+            border-radius: 0;
+          }
+
+          i {
+            font-size: 50px;
+            color: #000000;
+          }
+        }
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+
+      li {
+        display: block;
+        margin-bottom: 55px;
+
+        button {
+          background-color: #c40a5e;
+          color: #ffffff;
+          border: none;
+          font-family: $font-en-montserrat;
+          font-size: 15px;
+          font-weight: 700;
+          width: 100%;
+          padding: 20px 10px;
+          border-radius: 18px;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
+  .remove-btn {
+    background: $color-primary;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

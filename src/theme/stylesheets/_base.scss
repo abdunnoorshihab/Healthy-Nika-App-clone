@@ -1,0 +1,183 @@
+@import './fonts';
+@import './variables';
+
+/*** swipper-slider ****/
+@import "swiper/css/bundle";
+@import "swiper/css/effect-fade";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/scrollbar";
+@import "swiper/css/grid";
+@import "swiper/css/effect-coverflow";
+
+
+/*** 1. Default Css  ***/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: $color-white;
+  font-family: $font-en-primary;
+  font-style: normal;
+  font-weight: 500;
+  font-size: $font-dis-size;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  display: block;
+  color: $color-black;
+  font-family: $font-en-primary;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 !important;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container {
+  max-width: $container-max-width;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+
+/*** 2. Reusable Css  ***/
+.transition {
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+
+ion-select::part(icon) {
+  position: absolute;
+  top: 49%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+
+ion-toolbar {
+  --background-color: #fff;
+}
+
+ion-back-button {
+  --background: #fff;
+  --color: #F26871;
+  --box-shadow: none;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+ion-title {
+  font-family: $font-en-primary;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.invalid {
+  span {
+    color: #F26871;
+    font-family: $font-en-primary;
+    font-style: normal;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 3px;
+    padding-top: 3px;
+  }
+}
+
+
+// Remove Number Arrows
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+.spinner {
+  display: block;
+  width: 23px;
+  margin-right: 10px;
+  height: 23px;
+  background: transparent;
+  box-sizing: border-box;
+  border-top: 4px solid white;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-radius: 100%;
+  animation: spin 0.6s ease-out infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.app-update-modal {
+  --width: 95%;
+  --min-width: 250px;
+  --height: 240px;
+  --border-radius: 0px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+
+.section-title-right {
+  a {
+    transition: all 0.3s linear;
+  }
+
+  a:hover {
+    color: $color-primary !important;
+  }
+}

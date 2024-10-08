@@ -1,0 +1,17 @@
+<div class="pause-my-account">
+  <h3>Pause my account</h3>
+  <div *ngIf="userData?.pauseStatus === 'Active'">
+
+    <p >Pausing your account on HealthyNikah will remove your profile from the
+      homepage however, members can still search for your profile code. You will no
+      longer be able to make or receive match requests. You can reactivate at anytime
+      by revisiting this page.</p>
+    <p>Are you sure you want to pause your account? Enter reason*:</p>
+    <form  [formGroup]="dataForm" >
+      <input formControlName="pauseNote" class="txt-reason" type="text" name="" id="" placeholder="Enter reason here">
+      <button (click)="onPause()" class="btn-pause" type="submit">Pause my account</button><br>
+    </form>
+  </div>
+
+  <button *ngIf="userData?.pauseStatus === 'Pause'" (click)="onReactivate()" class="btn-reactivate" type="submit">Reactivate my account</button>
+</div>

@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "_id": "1",
+            "name": "Women's & Girls' Fashion",
+            "icon": "fa-solid fa-person-dress",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "2",
+            "name": "Health & Beauty",
+            "icon": "fa-solid fa-notes-medical",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "3",
+            "name": "Watches, Bags,Jewellery",
+            "icon": "fa-solid fa-clock",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "4",
+            "name": "Men's & Boys' Men's & Boys'",
+            "icon": " fa-solid fa-shirt",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "5",
+            "name": "Mother & Baby",
+            "icon": " fa-solid fa-baby",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "6",
+            "name": "Electronics  Devices",
+            "icon": "fa-solid fa-laptop-medical",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "7",
+            "name": "TV & Home Appliances",
+            "icon": " fa-solid fa-tv",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "8",
+            "name": "Electronic Accessories",
+            "icon": " fa-solid fa-bolt",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "9",
+            "name": "Groceries",
+            "icon": " fa-solid fa-cart-shopping",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        },
+        {
+            "_id": "10",
+            "name": "Home & Lifestyle",
+            "icon": " fa-solid fa-couch",
+            "image": "./assets/images/temp/image/c92d08e3-371f-47ff-aecd-76ebbb900a9f.png"
+        }
+    ]
+}

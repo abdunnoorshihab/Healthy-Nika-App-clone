@@ -1,0 +1,373 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="header-main back">
+      <div class="toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Back</ion-title>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" *ngIf="userBy">
+  <div class="home-area">
+    <div class="container">
+      <div class="home-main-area pending-user-area">
+
+        <div class="home-slide-area request-list" *ngFor="let data of requests">
+          <swiper [speed]="1000" [slidesPerView]="1" [loop]="false" [pagination]="true" [spaceBetween]="20"
+                  [grabCursor]="true" [autoplay]="false" class="mySwiper">
+            <ng-template swiperSlide>
+              <div class="home-info-card" style="display: block;">
+
+                <div class="home-info-card-main">
+                  <div class="home-info-card-top">
+                    <h1>HealthyNikah</h1>
+
+                    <div class="user-detail-top-img">
+                      <img src="./assets/images/temp/png/heart-bg-remove.png" alt="logo"/>
+                    </div>
+
+                    <div class="user-detail-profile-summery">
+                      <h2>Profile Summary: {{data?.requestTo?.userId}}</h2>
+                    </div>
+                  </div>
+                  <!-- END! home-info-card-top -->
+
+                  <div class="home-info-card-bottom">
+
+                    <div class="home-info-card-card" *ngIf="data?.status === 'Accepted' && data?.requestTo?.phoneNo">
+                      <h5>Phone Number:</h5>
+                      <a href="tel:{{data?.requestTo?.phoneNo}}">{{data?.requestTo?.phoneNo}}</a>
+                    </div>
+
+                    <div class="home-info-card-card" *ngIf="data?.status === 'Accepted' && data?.requestTo?.email">
+                      <h5>Email Address:</h5>
+                      <a href="mailto: {{data?.requestTo?.email}}">{{data?.requestTo?.email}}</a>
+                    </div>
+
+                    <div class="home-info-card-card" *ngIf="data?.status === 'Accepted' && data?.requestTo?.gender === 'female' && data?.requestTo?.parentPhone">
+                      <h5>Phone number of parent:</h5>
+                      <a href="tel:{{data?.requestTo?.parentPhone}}">{{data?.requestTo?.parentPhone}}</a>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Request Status:</h5>
+                      <!--                      <p *ngIf="data?.status !== 'Pending' && data?.status === 'Accepted'? 'green': ''">{{data?.status}}</p>-->
+                      <p [ngClass]="{'green': data?.status === 'Accepted','orange': data?.status === 'Pending','red': data?.status === 'Rejected'}">
+                        {{data?.status}}
+                      </p>
+                    </div>
+                    <div class="home-info-card-card">
+                      <h5>Electricity & Residence:</h5>
+                      <p>{{data?.requestTo?.ethnicity}}</p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Age and Height:</h5>
+                      <p>
+                        {{data?.requestTo?.age}}
+                        <br/>
+                        {{data?.requestTo?.height}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Educational Qualification:</h5>
+                      <p> {{data?.requestTo?.educationLevel}}</p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Current Work and Grade:</h5>
+                      <p>
+                        {{data?.requestTo?.professionalDetails}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Islamic Practice:</h5>
+                      <p>
+                        {{data?.requestTo?.islamicPractice}}
+                      </p>
+                    </div>
+
+
+                  </div>
+                </div>
+                <!-- <div class="request-area">
+                  <ul>
+                    <li><button (click)="removeRequestById(data?._id)">Delete Request</button></li>
+                    <li><button (click)="onRequest($event,data?.requestTo)">{{request?.requestTo?._id ===
+                        data?.requestTo?._id ? 'Delete Request': 'Send Request'}}</button></li>
+                  </ul>
+                </div> -->
+
+              </div><!--- END HOME INFO CARD -->
+            </ng-template>
+            <ng-template swiperSlide>
+              <div class="home-info-card">
+                <div class="home-info-card-main">
+                  <div class="home-info-card-top">
+                    <h1>HealthyNikah</h1>
+                    <div class="user-detail-top-img">
+                      <img src="./assets/images/temp/png/heart-bg-remove.png" alt="logo"/>
+                    </div>
+                  </div><!-- END! home-info-card-top -->
+
+                  <div class="home-info-card-bottom">
+                    <div class="home-info-card-card">
+                      <h5>About Me:</h5>
+                      <p>
+                        {{data?.requestTo?.aboutMe}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>What I'm looking for:</h5>
+                      <p>
+                        {{data?.requestTo?.whatILooking}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Any other important information:</h5>
+                      <p>
+                        {{data?.requestTo?.additionalInfo}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Profession you are looking for:</h5>
+                      <h6>{{data?.requestTo?.profession}}</h6>
+                    </div>
+
+
+                  </div>
+
+                  <!-- <div class="request-area">
+                    <ul>
+                      <li><button  (click)="removeRequestById(data?._id)">Delete Request</button></li>
+                     <li><button (click)="onRequest($event,data?.requestTo)">Send Request</button></li>
+                    </ul>
+                  </div> -->
+                </div>
+
+
+              </div><!--- END HOME INFO CARD -->
+            </ng-template>
+            <ng-template swiperSlide>
+              <div class="home-image-card">
+<!--                <img [class]="data?.status === 'Accepted' ? 'blur-hide': ''"-->
+<!--                  [src]="data?.requestTo?.profileImg ? data?.requestTo?.profileImg : 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg'"-->
+<!--                  alt="area-card"/>-->
+
+                <img [class]="data?.status === 'Accepted' ? 'blur-hide': ''" [src]="data?.requestTo?.profileImg ? data?.requestTo?.profileImg : './assets/avatar/user-young.jpg'" alt="area-card"
+                     *ngIf="data?.requestTo?.gender === 'male'" />
+
+                <img [class]="data?.status === 'Accepted' ? 'blur-hide': ''"
+                     [src]="data?.requestTo?.profileImg ? data?.requestTo?.profileImg : 'https://cdn.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.webp'"
+                  alt="area-card" *ngIf="data?.requestTo?.gender === 'female'" />
+<!--                <div class="request-area">-->
+<!--                  <ul>-->
+<!--                    <li>-->
+<!--                      <button (click)="removeRequestById(data?._id)">Delete Request</button>-->
+<!--                    </li>-->
+<!--                    &lt;!&ndash;                    <li><button (click)="onRequest($event,data?.requestTo)">Send Request</button></li>&ndash;&gt;-->
+<!--                  </ul>-->
+<!--                </div>-->
+              </div>
+
+            </ng-template>
+          </swiper>
+
+        </div><!--- END SLIDE AREA -->
+
+
+      </div>
+
+    </div>
+  </div><!-- END! home-area -->
+</ion-content>
+
+
+<ion-content [fullscreen]="true" *ngIf="userTo">
+  <div class="home-area">
+    <div class="container">
+      <div class="home-main-area ">
+
+        <div class="home-slide-area request-list" *ngFor="let data of requests">
+          <swiper [speed]="1000" [slidesPerView]="1" [loop]="false" [pagination]="true" [spaceBetween]="20"
+                  [grabCursor]="true" [autoplay]="false" class="mySwiper">
+            <ng-template swiperSlide>
+              <div class="home-info-card" style="display: block;">
+               <div class="home-info-card-main">
+                 <div class="home-info-card-top">
+                   <h1>HealthyNikah</h1>
+
+                   <div class="user-detail-top-img">
+                     <img src="./assets/images/temp/png/heart-bg-remove.png" alt="logo"/>
+                   </div>
+
+                   <div class="user-detail-profile-summery">
+                     <h2>Profile Summary: {{ data?.user?.userId}}</h2>
+                   </div>
+                 </div>
+                 <!-- END! home-info-card-top -->
+
+                 <div class="home-info-card-bottom">
+                   <div class="home-info-card-card">
+                     <h5>Electricity & Residence:</h5>
+                     <p>{{data?.user?.ethnicity}}</p>
+                   </div>
+
+                   <div class="home-info-card-card">
+                     <h5>Age and Height:</h5>
+                     <p>
+                       {{data?.age}}
+                       <br/>
+                       {{data?.user?.height}}
+                     </p>
+                   </div>
+
+                   <div class="home-info-card-card">
+                     <h5>Educational Qualification:</h5>
+                     <p> {{data?.user?.educationLevel}}</p>
+                   </div>
+
+                   <div class="home-info-card-card">
+                     <h5>Current Work and Grade:</h5>
+                     <p>
+                       {{data?.user?.professionalDetails}}
+                     </p>
+                   </div>
+
+                   <div class="home-info-card-card">
+                     <h5>Islamic Practice:</h5>
+                     <p>
+                       {{data?.user?.islamicPractice}}
+                     </p>
+                   </div>
+
+
+                 </div>
+
+               </div>
+                <div class="request-area">
+                  <ul>
+                    <li  *ngIf="(data?.status !== 'Accepted') && (data?.status !== 'Rejected')">
+                      <button style="background-color: #121212;"
+                              (click)="updateRequestDB(data?._id,'Rejected')">Reject
+                      </button>
+                    </li>
+                    <li *ngIf="(data?._id != isRequestLoad && countDown === 3) && (data?.status !== 'Accepted') && (data?.status !== 'Rejected')">
+                      <button (click)="updateRequestDB(data?._id,'Accepted')">Accept</button>
+                    </li>
+                    <li *ngIf="data?._id === isRequestLoad && countDown > 0"><button><span class="circle"></span> Wait
+                      {{countDown}} s</button></li>
+                  </ul>
+                </div>
+              </div><!--- END HOME INFO CARD -->
+            </ng-template>
+            <ng-template swiperSlide>
+              <div class="home-info-card">
+                <div class="home-info-card-main">
+                  <div class="home-info-card-top">
+                    <h1>HealthyNikah</h1>
+                    <div class="user-detail-top-img">
+                      <img src="./assets/images/temp/png/heart-bg-remove.png" alt="logo"/>
+                    </div>
+                  </div><!-- END! home-info-card-top -->
+
+                  <div class="home-info-card-bottom">
+                    <div class="home-info-card-card">
+                      <h5>About Me:</h5>
+                      <p>
+                        {{data?.user?.aboutMe}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>What I'm looking for:</h5>
+                      <p>
+                        {{data?.user?.whatILooking}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Any other important information:</h5>
+                      <p>
+                        {{data?.user?.additionalInfo}}
+                      </p>
+                    </div>
+
+                    <div class="home-info-card-card">
+                      <h5>Profession you are looking for:</h5>
+                      <h6>{{data?.user?.profession}}</h6>
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+                <div class="request-area">
+                  <ul>
+                    <li  *ngIf="(data?.status !== 'Accepted') && (data?.status !== 'Rejected')">
+                      {{data?.status}}
+                      <button style="background-color: #121212;"
+                              (click)="updateRequestDB(data?._id,'Rejected')">Reject
+                      </button>
+                    </li>
+                    <li *ngIf="(data?._id != isRequestLoad && countDown === 3) && (data?.status !== 'Accepted') && (data?.status !== 'Rejected') ">
+                      <button (click)="updateRequestDB(data?._id,'Accepted')">Accept</button>
+                    </li>
+                    <li *ngIf="data?._id === isRequestLoad && countDown > 0"><button><span class="circle"></span> Wait
+                      {{countDown}} s</button></li>
+                  </ul>
+                </div>
+              </div><!--- END HOME INFO CARD -->
+            </ng-template>
+            <ng-template swiperSlide>
+              <div class="home-image-card">
+<!--                <img-->
+<!--                  [src]="data?.user?.profileImg ? data?.user?.profileImg : 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg'"-->
+<!--                  alt="area-card"/>-->
+                <img [class]="data?.status === 'Accepted' ? 'blur-hide': ''" [src]="data?.user?.profileImg ? data?.user?.profileImg : './assets/avatar/user-young.jpg'" alt="area-card"
+                     *ngIf="data?.user?.gender === 'male'" />
+
+                <img [class]="data?.status === 'Accepted' ? 'blur-hide': ''"
+                     [src]="data?.user?.profileImg ? data?.user?.profileImg : 'https://cdn.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.webp'"
+                     alt="area-card" *ngIf="data?.user?.gender === 'female'" />
+
+                <div class="request-area">
+                  <ul>
+                    <li *ngIf="(data?.status !== 'Accepted') && (data?.status !== 'Rejected')">
+                      <button style="background-color: #121212;"
+                              (click)="updateRequestDB(data?._id,'Rejected')">Reject
+                      </button>
+                    </li>
+                    <li *ngIf="(data?._id != isRequestLoad && countDown === 3) && (data?.status !== 'Accepted')  && (data?.status !== 'Rejected')">
+                      <button (click)="updateRequestDB(data?._id,'Accepted')">Accept</button>
+                    </li>
+                    <li *ngIf="data?._id === isRequestLoad && countDown > 0"><button><span class="circle"></span> Wait
+                      {{countDown}} s</button></li>
+                  </ul>
+                </div>
+              </div>
+
+            </ng-template>
+          </swiper>
+
+        </div><!--- END SLIDE AREA -->
+
+      </div>
+
+    </div>
+  </div><!-- END! home-area -->
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>
+<!-- END! bottom-nav -->

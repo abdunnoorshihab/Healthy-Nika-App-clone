@@ -1,0 +1,119 @@
+@import'../../../theme/stylesheets/variables';
+@import'../../../theme/stylesheets/header-one.scss';
+ion-back-button {
+  --background: transparent;
+  --color: var(--ion-color-primary);
+  --border-radius: 50%;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --padding: 10px;
+  --min-height: 20px;
+  --min-width: 20px;
+  .button-native {
+    background: var(--ion-color-light)!important;
+    border: 2px solid var(--ion-color-primary)!important;
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  .button-icon {
+    font-size: 1.5rem;
+  }
+}
+
+//ion-back-button {
+//  --background: transparent;
+//  --icon: url('/assets/images/png/2.png') no-repeat center center;
+//}
+
+div[aria-expanded] {
+  overflow: hidden;
+}
+
+.faq-area{
+  .faq-main{
+    padding: 15px 11px;
+    box-sizing: border-box;
+    .title{
+      padding-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      font-family: $font-en-montserrat;
+    }
+    .heart-icon{
+      margin-bottom: 20px;
+      img {
+        max-width:65px;
+        width: 100%;
+        object-fit: contain;
+        margin-inline: auto;
+      }
+    }
+
+    .faq-card{
+      //border: 2px dashed $color-primary;
+      //padding: 15px 13px;
+      //margin-bottom: 15px;
+      overflow: hidden;
+      text-align: center;
+      .faq-button{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 5px;
+        cursor: pointer;
+        height: 50px;
+        background: $color-primary;
+        i{
+          font-weight: 800;
+          font-size: 18px;
+          padding: 0 5px;
+          color: $color-white;
+          transition: transform 0.3s;
+        }
+        i.fa-plus {
+          transform: rotate(0);
+        }
+
+        i.fa-minus {
+          transform: rotate(180deg);
+        }
+
+        p {
+          margin: 10px 0 0;
+          display: none;
+        }
+
+        p.ng-animating {
+          display: block;
+        }
+      }
+      h3{
+        color: $color-white;
+        font-family: $font-en-montserrat;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 17px;
+        text-align: start;
+        //margin-bottom: 15px!important;
+      }
+      p{
+        border: 1.5px solid $color-primary;
+        border-top: none;
+        padding: 10px 5px;
+        margin: 0 5px!important;
+        color: #121212;
+        font-size: 14px;
+        font-family: $font-en-montserrat;
+        line-height: 23px;
+        font-weight: 500;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        margin-bottom: 10px!important;
+        &:last-child{
+          //margin: 0px!important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,719 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="header-content">
+           <span class="back-button" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>HEALTHY NIKAH</h1>
+            </div>
+            <div class="profile-list-header-right">
+              <button type="button" routerLink="/notification">
+                <img
+                  src="./assets/images/brand/png/notification-second.png"
+                  alt="notification-second"
+                />
+                <div class="count" *ngIf="notificationCount">
+                  <p>{{ notificationCount ?? 0 }}</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="profile-list-header-child">
+            <div class="profile-list-header-left">
+              <h1>Edit your profile</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="!isLoading" class="edit-area">
+    <h1>YOUR PROFILE CODE: {{ user?.userId }}</h1>
+    <div class="container">
+      <!--      <div class="user-img">-->
+      <!--        <img (click)="profileImagePicker.click()" [src]="imgPlaceHolder" [alt]="'Picked Image'">-->
+      <!--        <input [hidden]="true" #profileImagePicker type="file" (change)="fileChangeEvent($event)" accept="image/*" />-->
+      <!--        <button (click)="profileImagePicker.click()">Change Profile</button>-->
+      <!--      </div>-->
+      <div class="edit-form-area">
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+          <div class="form">
+
+            <div class="form-field form-field-name">
+              <label>Full Name</label>
+              <p>
+                Please enter your full name. This is so that HealthyNIkah can
+                verify your identity. Please note, this will not be shared
+                publicly on your profile.
+              </p>
+              <div class="password">
+                <input readonly
+                       [class]="dataForm.get('name').touched && dataForm.get('name').invalid ? 'invalid':''"
+                       formControlName="name"
+                       type="text"
+                       placeholder="Full Name"
+                />
+                <span><i class="fa-solid fa-lock"></i></span>
+              </div>
+            </div>
+
+
+            <div class="form-field">
+              <label>Email</label>
+<!--              <input [class]="dataForm.get('email').touched && dataForm.get('email').invalid ? 'invalid':''"-->
+<!--                     formControlName="email" type="email" placeholder="Email"/>-->
+
+              <div class="password">
+                <input readonly
+                       [class]="dataForm.get('email').touched && dataForm.get('email').invalid ? 'invalid':''"
+                       formControlName="email"
+                       type="email"
+                       placeholder="Email"
+                />
+                <span><i class="fa-solid fa-lock"></i></span>
+              </div>
+            </div>
+
+
+            <div class="form-field form-field-name">
+              <label>Mobile Number</label>
+              <div
+                class="phone-number-main"
+                [class]="dataForm.get('phoneNo').touched && dataForm.get('phoneNo').invalid ? 'invalid':''"
+              >
+                <div class="phone-number-select" [matMenuTriggerFor]="menu">
+                  <img
+                    [src]="getSingleCountry?.image"
+                    alt="flag"
+                  />
+                  <p>
+                    <span> ({{ getSingleCountry?.dial_code }}) </span>
+                    <small>
+                      <i class="fa-solid fa-sort-down"></i>
+                    </small>
+                  </p>
+                </div>
+
+                <input
+                  formControlName="phoneNo"
+                  type="text"
+                  placeholder=""
+                />
+              </div>
+            </div>
+
+            <div class="personal-parent-phone" >
+              <div class="form-field form-field-name">
+                <label>Parent’s Mobile Number</label>
+                <p *ngIf="user?.gender === 'female'">
+                  Wali for females
+                </p>
+                <div
+                  class="phone-number-main"
+                  [class]="dataForm.get('parentPhone').touched && dataForm.get('parentPhone').invalid ? 'invalid':''"
+                >
+                  <div class="phone-number-select" [matMenuTriggerFor]="menu1">
+                    <img
+                      [src]="getSingleCountry1?.image"
+                      alt="flag"
+                    />
+                    <p>
+                      <span> ({{ getSingleCountry1?.dial_code }}) </span>
+                      <small>
+                        <i class="fa-solid fa-sort-down"></i>
+                      </small>
+                    </p>
+                  </div>
+
+                  <input
+                    formControlName="parentPhone"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+
+              <div class="form-field form-field-parent-phone">
+                <label>Parent’s Email Address</label>
+                <input
+                  [class]="dataForm.get('parentEmail').touched && dataForm.get('parentEmail').invalid ? 'invalid':''"
+                  formControlName="parentEmail"
+                  type="email"
+                  placeholder="Enter email address"
+                />
+              </div>
+            </div>
+<!--            <div class="form-field">-->
+<!--              <label>Username</label>-->
+<!--              <input [class]="dataForm.get('username').touched && dataForm.get('username').invalid ? 'invalid':''"-->
+<!--                     formControlName="username" type="text" placeholder="Username"/>-->
+<!--            </div>-->
+            <div class="form-field">
+              <label>Gender</label>
+<!--              <ion-list class="custom-list">-->
+<!--                <ion-item class="custom-item"-->
+<!--                          [class]="dataForm.get('gender')?.touched && dataForm.get('gender')?.invalid ? 'invalid-item' : ''">-->
+<!--                  <ion-select class="arrow-container" interface="action-sheet" formControlName="gender"-->
+<!--                              placeholder="Gender">-->
+<!--                    <ion-select-option *ngFor="let data of genders" [value]="data.value">{{ data.viewValue }}-->
+<!--                    </ion-select-option>-->
+<!--                  </ion-select>-->
+<!--                </ion-item>-->
+<!--              </ion-list>-->
+
+<!--              <div class="invalid" *ngIf="dataForm.get('gender')?.touched && dataForm.get('gender')?.invalid">-->
+<!--                <span>This field is required</span>-->
+<!--              </div>-->
+
+              <div class="password">
+                <input readonly
+                       [class]="dataForm.get('gender').touched && dataForm.get('gender').invalid ? 'invalid':''"
+                       formControlName="gender"
+                       type="text"
+                       placeholder="Gender"
+                />
+                <span><i class="fa-solid fa-lock"></i></span>
+              </div>
+            </div>
+
+
+            <div class="form-field">
+              <label>Date of Birth</label>
+<!--              <button-->
+<!--                class="input-type-btn"-->
+<!--                type="button"-->
+<!--                id="open-modal1"-->
+<!--                [class.invalid]="dataForm.get('dateOfBirth')?.touched && dataForm.get('dateOfBirth')?.invalid"-->
+<!--              >-->
+<!--                {{ dataForm.value['dateOfBirth'] ? (dataForm.value['dateOfBirth'] | date: 'mediumDate') : 'Select your date of birth' }}-->
+<!--                <i class="fa-solid fa-sort-down"></i>-->
+<!--              </button>-->
+
+
+              <div class="password">
+                <input readonly
+                       [class]="dataForm.get('dateOfBirth').touched && dataForm.get('dateOfBirth').invalid ? 'invalid':''"
+                       formControlName="dateOfBirth"
+                       type="text"
+                       placeholder="Date Of Birth"
+                />
+                <span><i class="fa-solid fa-lock"></i></span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Height in feet</label>
+              <ion-list class="custom-list">
+                <ion-item class="custom-item"
+                          [class]="dataForm.get('height')?.touched && dataForm.get('height')?.invalid ? 'invalid-item' : ''">
+                  <ion-select class="arrow-container" interface="action-sheet" formControlName="height"
+                              placeholder="Height in feet">
+                    <ion-select-option *ngFor="let data of heightType" [value]="data.value">{{ data.viewValue }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+
+              <div class="invalid" *ngIf="dataForm.get('height')?.touched && dataForm.get('height')?.invalid">
+                <span>This field is required</span>
+              </div>
+            </div>
+
+
+            <div class="form-field">
+              <label>Ethnicity</label>
+<!--              <app-searchable-select [selectedValue]="ethincitySelected" [items]="countrys" [holdItems]="countrys"-->
+<!--                                     [fieldTitle]="'Ethnicity'" [itemTextField]="'name'"-->
+<!--                                     (onChange)="onEthnicityChange($event)"></app-searchable-select>-->
+<!--              <div class="invalid-text"-->
+<!--                   *ngIf="dataForm.get('ethnicity')?.touched && dataForm.get('ethnicity')?.invalid">-->
+<!--                <span>This field is required</span>-->
+<!--              </div>-->
+
+
+              <div class="password">
+                <input readonly
+                       [class]="dataForm.get('ethnicity').touched && dataForm.get('ethnicity').invalid ? 'invalid':''"
+                       formControlName="ethnicity"
+                       type="text"
+                       placeholder="Ethnicity"
+                />
+                <span><i class="fa-solid fa-lock"></i></span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Are you multi-ethnic?</label>
+              <div class="radio-field-main">
+                <div class="mat-radio mat-btn">
+                  <label for="multiEthnic1">
+                    <input
+                      formControlName="multiEthnic"
+                      id="multiEthnic1"
+                      type="radio"
+                      name="multiEthnic"
+                      value="yes"
+                      checked
+                    />
+                    <span>Yes</span>
+                  </label>
+                  <label for="multiEthnic">
+                    <input
+                      id="multiEthnic"
+                      formControlName="multiEthnic"
+                      type="radio"
+                      name="multiEthnic"
+                      value="no"
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field" *ngIf="dataForm?.value?.multiEthnic === 'yes'">
+              <label>Secondary Ethnicity</label>
+              <app-searchable-select [selectedValue]="secondEthnicitySelected" [items]="countrys" [holdItems]="countrys"
+                                     [fieldTitle]="'secondEthnicity'" [itemTextField]="'name'"
+                                     (onChange)="onEthnicityChangeSecond($event)"></app-searchable-select>
+
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('secondEthnicity')?.touched && dataForm.get('secondEthnicity')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>Nationality</label>
+              <p>(Your legal citizenship)</p>
+              <app-searchable-select
+                [selectedValue]="nationalitySelected"
+                [items]="nationalities"
+                [holdItems]="nationalities"
+                [fieldTitle]="'Select your nationality'"
+                [itemTextField]="'name'"
+                (onChange)="onNationalityChange($event)"
+              ></app-searchable-select>
+
+              <div
+                class="invalid-text"
+                *ngIf="dataForm.get('cityzenShip')?.touched && dataForm.get('cityzenShip')?.invalid"
+              >
+                <span>This field is required</span>
+              </div>
+            </div>
+
+            <div class="form-field-grid">
+              <div class="form-field">
+                <label>Country</label>
+                <app-searchable-select
+                  [selectedValue]="countrySelected"
+                  [items]="countrys"
+                  [holdItems]="countrys"
+                  [fieldTitle]="'Select country'"
+                  [itemTextField]="'name'"
+                  (onChange)="onCountryChange($event)"
+                ></app-searchable-select>
+
+                <div
+                  class="invalid-text"
+                  *ngIf="dataForm.get('countryOfResidence')?.touched && dataForm.get('countryOfResidence')?.invalid"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label>Region</label>
+                <app-searchable-select [selectedValue]="citySelected" [items]="cities" [holdItems]="cities"
+                                       [fieldTitle]="'select of Region'" [itemTextField]="null"
+                                       (onChange)="onCityChange($event)"></app-searchable-select>
+                <div
+                  class="invalid-text"
+                  *ngIf="dataForm.get('cityOfResidence')?.touched && dataForm.get('cityOfResidence')?.invalid"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Marital status</label>
+              <div class="mat-radio" style="padding-left: 10px;">
+                <label for="neverMarried"
+                ><input
+                  formControlName="maritalStatus"
+                  id="neverMarried"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Never Married"
+                />
+                  <span  class="span-with">Never Married</span></label
+                >
+                <label for="Divorced"
+                ><input
+                  id="Divorced"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Divorced"
+                />
+                  <span class="span-with">Divorced</span>
+                </label>
+                <label for="Widowed"
+                ><input
+                  id="Widowed"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Widowed"
+                />
+                  <span class="span-with">Widowed</span>
+                </label>
+                <label for="Annulled"
+                ><input
+                  id="Annulled"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Annulled"
+                />
+                  <span class="span-with">Annulled</span>
+                </label>
+                <label for="Married"
+                ><input
+                  id="Married"
+                  formControlName="maritalStatus"
+                  type="radio"
+                  name="maritalStatus"
+                  value="Married"
+                />
+                  <span class="span-with">Married</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>Islamic practice</label>
+              <p>
+                Describe your Islamic practice in detail. This may include information
+                about your Salah, daily routines or activities, how you dress/cover, your
+                sect/methodology and any Islamic goals you may have.
+              </p>
+              <textarea
+                #islamic
+                [class]="dataForm.get('islamicPractice').touched && dataForm.get('islamicPractice').invalid ? 'invalid':''"
+                formControlName="islamicPractice"
+                name=""
+                id=""
+                cols="20"
+                rows="5"
+                placeholder="Enter your Islamic practice"
+              ></textarea>
+              <small class="hint hint-second">Max 1000 characters</small>
+            </div>
+
+            <div class="form-field">
+              <label>Educational qualifications/achievements</label>
+              <input
+                [class]="dataForm.get('educationLevel').touched && dataForm.get('educationLevel').invalid ? 'invalid':''"
+                formControlName="educationLevel"
+                type="text"
+                placeholder="Enter your educational qualifications/achievements"
+              />
+            </div>
+
+            <div class="form-field form-field-name">
+              <label style="line-height: 16px">Professional details</label>
+              <p>What is your profession?</p>
+              <div class="profession-select">
+                <app-searchable-select
+                  [selectedValue]="professionSelected"
+                  [items]="professions"
+                  [holdItems]="professions"
+                  [fieldTitle]="'Choose your profession'"
+                  [itemTextField]="'name'"
+                  (onChange)="onChangeProfession($event)"
+                ></app-searchable-select>
+                <div
+                  class="invalid-text"
+                  *ngIf="dataForm.get('profession')?.touched && dataForm.get('profession')?.invalid"
+                >
+                  <span>This field is required</span>
+                </div>
+              </div>
+              <p>if other, write below in one or two words.</p>
+              <div class="other-profession">
+                <input
+                  formControlName="otherProfession"
+                  placeholder="Other profession"
+                  type="text"
+                />
+              </div>
+
+              <h3>
+                Include your current job title, specialisation/field, years of
+                experience, career goals and region of work below.
+              </h3>
+
+              <textarea
+                [class]="dataForm.get('professionalDetails').touched && dataForm.get('professionalDetails').invalid ? 'invalid':''"
+                formControlName="professionalDetails"
+                name="professionalDetails"
+                id=""
+                cols="20"
+                rows="5"
+                placeholder="Enter your professional details"
+              ></textarea>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>Self summary</label>
+              <p>
+                Write a summary about yourself, highlighting your personality,
+                interests, hobbies and values.
+              </p>
+              <textarea
+                #selfSummery
+                [class]="dataForm.get('selfSummery').touched && dataForm.get('selfSummery').invalid ? 'invalid':''"
+                formControlName="selfSummery"
+                name="selfSummery"
+                cols="20"
+                rows="5"
+                placeholder="Enter your self summary"
+              ></textarea>
+              <small class="hint hint-second">Max 1000 characters</small>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>What are you looking for in your spouse? </label>
+              <p>
+                Please provide as much information as possible. This includes
+                age and height preference, level of religious observance,
+                preferred religious practices (e.g. salah/fasting etc.),
+                cultural values and family background, personality traits and
+                any lifestyle preferences you may have.
+              </p>
+              <textarea
+                #aboutMe
+                [class]="dataForm.get('aboutMe').touched && dataForm.get('aboutMe').invalid ? 'invalid':''"
+                formControlName="aboutMe"
+                name="aboutMe"
+                cols="20"
+                rows="5"
+                placeholder="Enter what you are looking for in your spouse"
+              ></textarea>
+              <small class="hint hint-second">Max 1000 characters </small>
+            </div>
+
+            <div class="form-field">
+              <label>Profession</label>
+              <div class="mat-radio">
+                <label for="partnerProfession1"
+                ><input
+                  formControlName="partnerProfession"
+                  id="partnerProfession1"
+                  type="radio"
+                  name="partnerProfession"
+                  value="I am looking to get married to a healthcare
+                    professional."
+                />
+                  <span class="radio-span"
+                  >I am looking to get married to a healthcare
+                    professional.</span
+                  ></label
+                >
+                <label for="partnerProfession2"
+                ><input
+                  id="partnerProfession2"
+                  formControlName="partnerProfession"
+                  type="radio"
+                  name="partnerProfession"
+                  value="I would prefer a healthcare professional, but either way is
+                    fine."
+                />
+                  <span class="radio-span"
+                  >I would prefer a healthcare professional, but either way is
+                    fine.
+                  </span>
+                </label>
+                <label for="partnerProfession3"
+                ><input
+                  id="partnerProfession3"
+                  formControlName="partnerProfession"
+                  type="radio"
+                  name="partnerProfession"
+                  value="I do not mind if they are a healthcare professional or
+                    not."
+                />
+                  <span class="radio-span"
+                  >I do not mind if they are a healthcare professional or
+                    not.</span
+                  >
+                </label>
+              </div>
+
+              <p>Is there a specific type of healthcare professional you would like to marry?
+                e.g. Doctor/Dentist. If so, please specify below, otherwise leave blank.</p>
+              <div class="other-profession">
+                <input
+                  formControlName="otherPartnerProfession"
+                  placeholder=""
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label>Additional information</label>
+              <p>
+                This may include other details or preferences you feel are
+                important for potential matches to know about you.
+              </p>
+              <textarea
+                [class]="dataForm.get('additionalInformation').touched && dataForm.get('additionalInformation').invalid ? 'invalid':''"
+                formControlName="additionalInformation"
+                name="additionalInformation"
+                type="text"
+                cols="20"
+                rows="5"
+                placeholder="Enter your self summary"
+              ></textarea>
+            </div>
+
+            <div class="form-field form-field-name">
+              <label
+              >Would you like to increase your chances of finding a match?
+              </label>
+
+              <p>
+                I would like my anonymous profile summary (without identifiable
+                information) to be uploaded on Instagram and TikTok.
+              </p>
+
+              <div class="mat-radio">
+                <label for="one"
+                ><input
+                  formControlName="findingMatch"
+                  id="one"
+                  type="radio"
+                  name="findingMatch"
+                  value="Yes - I would like to increase my chances of finding a
+                    match. (recommended option)"
+                />
+                  <span class="radio-span"
+                  >Yes - I would like to increase my chances of finding a
+                    match. (recommended option)</span
+                  ></label
+                >
+                <label for="two"
+                ><input
+                  id="two"
+                  formControlName="findingMatch"
+                  type="radio"
+                  name="findingMatch"
+                  value="No - I will use Telegram only, even though this may reduce
+                    the chances of me finding a match."
+                />
+                  <span class="radio-span"
+                  >No - I will use Telegram only, even though this may reduce
+                    the chances of me finding a match.
+                  </span>
+                </label>
+                <label for="three"
+                ><input
+                  id="three"
+                  formControlName="findingMatch"
+                  type="radio"
+                  name="findingMatch"
+                  value="No - I want my profile to be visible only on the app
+                    only."
+                />
+                  <span class="radio-span"
+                  >No - I want my profile to be visible only on the app
+                    only.</span
+                  >
+                </label>
+              </div>
+            </div>
+
+<!--            <div class="form-field">-->
+<!--              <label>Mobile Number</label>-->
+<!--              <input [class]="dataForm.get('phoneNo').touched && dataForm.get('phoneNo').invalid ? 'invalid':''"-->
+<!--                     formControlName="phoneNo" type="text" placeholder="Mobile Number"/>-->
+<!--            </div>-->
+
+
+
+            <div class="sub-btn">
+              <button type="submit">Save changes</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-datetime">
+    <ion-datetime-button datetime="datetime" style="display: none;"></ion-datetime-button>
+    <ion-modal trigger="open-modal1" [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          id="datetime"
+          presentation="date"
+          [preferWheel]="true"
+          [showDefaultButtons]="true"
+          (ionChange)="onDateChange($event)">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+
+
+  <mat-menu #menu="matMenu" class="mat-menu-login">
+    <div class="search-area">
+      <input class="input-grey-rounded" placeholder="Search Country or Code" [(ngModel)]="searchQuery" (click)="$event.stopPropagation()" />
+    </div>
+    <ng-container *ngFor="let data of filteredCountryData">
+      <button mat-menu-item (click)="onGetSingleCountry(data)">
+        <div class="login-flag">
+          <div>
+            <img [src]="data?.image | safeUrl" [alt]="data?.name" />
+          </div>
+          <div>
+            <span style="color: #000000">/ {{ data?.name }}</span>
+          </div>
+        </div>
+      </button>
+    </ng-container>
+  </mat-menu>
+
+
+
+  <mat-menu #menu1="matMenu" class="mat-menu-login">
+    <div class="search-area">
+      <input class="input-grey-rounded" placeholder="Search Country or Code" [(ngModel)]="searchQuery1" (click)="$event.stopPropagation()" />
+    </div>
+    <ng-container *ngFor="let data of filteredCountryData1">
+      <button mat-menu-item (click)="onGetSingleCountry1(data)">
+        <div class="login-flag">
+          <div>
+            <img [src]="data?.image | safeUrl" [alt]="data?.name" />
+          </div>
+          <div>
+            <span style="color: #000000">/ {{ data?.name }}</span>
+          </div>
+        </div>
+      </button>
+    </ng-container>
+  </mat-menu>
+</ion-content>

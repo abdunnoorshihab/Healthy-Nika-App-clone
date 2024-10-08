@@ -1,0 +1,132 @@
+@import'../../../theme/stylesheets/variables';
+
+/* --- header --- */
+.header {
+    z-index: 11;
+    background-color: $color-white;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #EFF6FF;
+
+    h3 {
+        color: $color-primary;
+        font-family: $font-en-montserrat;
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 20px;
+        position: absolute;
+        font-weight: 700;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding-top: 2px;
+    }
+
+    .user-icon {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        button {
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                min-width: 20px;
+                max-width: 20px;
+                height: 20px;
+                fill: #000;
+            }
+        }
+    }
+}
+
+/* --- user-details --- */
+.user-details {
+    padding: 0 10px 20px 10px;
+    box-sizing: border-box;
+    background-color: #EFF6FF;
+}
+
+/* --- user-details-top --- */
+.user-details-top {
+    h1 {
+        font-family: $font-en-montserrat;
+        font-size: 21px;
+        color: #000;
+        text-align: center;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 5.5px;
+    }
+
+    .user-detail-top-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-block: 12px 14px;
+
+        img {
+            max-width: 40px;
+        }
+    }
+
+    .user-detail-profile-summery {
+        margin-bottom: 22px;
+
+        h2 {
+            color: #D55EA6;
+            font-family: $font-en-montserrat;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+}
+
+
+.user-details-bottom {
+    .user-details-card {
+        margin-bottom: 20px;
+
+        h5 {
+            font-family: $font-en-montserrat;
+            font-size: 13px;
+            font-weight: 700;
+            color: #db6eaa;
+            text-align: center;
+            margin-bottom: 2px !important;
+
+        }
+
+        p {
+            text-align: center;
+            font-family: $font-en-montserrat;
+            font-size: 10px;
+            text-align: center;
+            font-weight: 400;
+            line-height: 15px;
+        }
+
+        h6 {
+            text-align: center;
+            font-family: $font-en-montserrat;
+            font-size: 10px;
+            text-align: center;
+            font-weight: 600;
+            line-height: 15px;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+
+    }
+
+}

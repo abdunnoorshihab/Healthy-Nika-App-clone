@@ -1,0 +1,85 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <div class="profile-list-header">
+      <div class="container">
+        <div class="profile-list-header-child">
+          <div class="profile-list-header-left">
+            <img
+              src="/assets/images/brand/png/white-logo.png"
+              alt="white-logo"
+            />
+
+            <h1>HEALTHY NIKAH</h1>
+          </div>
+          <div class="profile-list-header-right">
+            <button type="button" routerLink="/notification">
+              <img src="./assets/images/brand/png/notification-second.png" alt="notification-second"/>
+            </button>
+            <div class="count" *ngIf="notificationCount">
+              <p>{{ notificationCount ?? 0 }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END! profile-list-header -->
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true"  #content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="home-area">
+    <div class="container">
+      <div class="home-main-area">
+
+        <div class="profile-list-part-top">
+          <div class="container">
+            <div class="profile-list-part-top-child">
+              <div class="action" *ngIf="isFilteringData">
+                <p (click)="onClearFilter()">Clear</p>
+              </div>
+              <button type="button" (click)="navigateToFilterModal()">
+                <svg viewBox="0 0 512 512">
+                  <path
+                    d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!-- END! profile-list-part-top-child -->
+          </div>
+        </div>
+        <!-- END! profile-list-cards-top -->
+        <ng-container *ngIf="isLoading && !users.length">
+          <app-home-card-loader *ngFor="let data of [0,1,2];">></app-home-card-loader>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoading && users.length" style="padding: 15px 0">
+          <div style="margin: 10px" *ngFor="let data of users;let i = index">
+            <app-profile-list-part-card
+              [data]="data"
+              [request]="requests"
+              [requestsTo]="requestsTo"
+              (onNewRequestSent)="onNewRequestSent($event)"
+              (onNewHide)="onNewHide($event)"
+
+            >
+            </app-profile-list-part-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!--              (onNewRequestSent)="onNewRequestSent($event)"-->
+  <!-- END! home-area -->
+
+  <div *ngIf="showArrow" class="arrow">
+    <img src="/assets/images/png/8.png" alt="">
+  </div>
+</ion-content>
+
+<app-bottom-nav (homeButtonClicked)="scrollToTop()"></app-bottom-nav>
+<!-- END! bottom-nav -->

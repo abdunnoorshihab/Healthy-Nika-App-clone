@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <div class="registration-area" id="registrationArea">
+    <div class="registration-top">
+      <div class="container">
+        <div class="registration-top-main">
+          <span routerLink="/registration4"><i class="fa fa-chevron-left"></i></span>
+          <h3>
+            Create Your
+            Profile
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <form >
+      <div class="container">
+        <div class="registration-main">
+          <div class="form">
+            <div class="form-field">
+              <label>Choose your price plans below;
+                (Please ensure to click the payment link on the next page. Kindly note that profiles will only be created upon receipt of payment)</label>
+              <div class="mat-radio">
+                <label for="two"><input id="two" disabled type="radio" name="profession"
+                                        value="two"> I just want to be added to the database - £10</label>
+                <label for="three"><input id="three" disabled  type="radio" name="profession"
+                                          value="three"> Add me to the databse and I would like 3 match credits please - £22.00</label>
+                <label for="four"><input id="four" disabled type="radio" name="profession"
+                                         value="four">Add me to the databse and I would like 10 match credits please - £40.00</label>
+              </div>
+            </div>
+            <div class="sub-btn">
+              <button type="button" routerLink="/registration5">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>

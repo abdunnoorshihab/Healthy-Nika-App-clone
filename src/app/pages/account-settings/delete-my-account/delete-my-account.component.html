@@ -1,0 +1,31 @@
+
+<form  [formGroup]="dataForm" >
+<div class="permanently-delete-my-account">
+  <h3>Permanently delete my account</h3>
+  <p>Deleting your account will permanently remove your profile and all associated
+    data from HealthyNikah. Please note that if you decide to join again, you will need
+    to pay the joining fee and will not be able to retrieve any previous match credits.</p>
+  <p>Are you sure you want to permanently delete your account? Enter reason*:</p>
+  <div class="reason-radio">
+    <label><input formControlName="reason" value="I am pursuing a match from HealthyNikah" type="radio"><span>I am pursuing a match from HealthyNikah</span></label>
+    <label><input formControlName="reason" type="radio" value="I no longer want to get married so the app is not relevant"><span>I no longer want to get married so the app is not relevant</span></label>
+    <label><input formControlName="reason" type="radio" value="The app is difficult to use"><span>The app is difficult to use</span></label>
+    <label><input formControlName="reason" type="radio" value="I am married"><span>I am married</span></label>
+    <label><input formControlName="reason" type="radio" value="Something else"><span>Something else</span></label>
+  </div>
+  <div class="txt-reason" *ngIf="dataForm.value.reason === 'Something else'">
+<!--    <input class="reason-note" formControlName="reasonNote" type="text" name="" id="" placeholder="Enter more detail about why you are leaving the app and permanently deleting your account.">-->
+ <textarea class="reason-note" required formControlName="reasonNote" type="text" name="" id="" placeholder="Enter more detail about why you are leaving the app and permanently deleting your account." cols="30" rows="4"></textarea>
+
+  </div>
+  <div class="confirmation">
+    <label>
+      <input required formControlName="isDelete" type="checkbox">
+      <span>I confirm I want to permanently delete my account.</span>
+    </label>
+  </div>
+ <div class="btn-delete">
+  <button (click)="onDeleteAccount()" type="button">Permanently delete my account</button>
+ </div>
+</div>
+</form>

@@ -1,0 +1,36 @@
+<div class="searchable-select-area">
+  <div class="select-btn">
+    <button type="button" (click)="onShowPopup()">{{ selectedValue && selectedValue[itemTextField] ? selectedValue?.name : selectedValue? selectedValue :
+      fieldTitle }} <i [class]="isActive ?  'fa fa-caret-up':'fa fa-caret-down'"></i></button>
+  </div>
+
+  <div class="search-select-pop-area" [class]="isActive ? 'active':''">
+    <div class="search-select-pop-main">
+      <div class="search-select-top">
+        <div class="search-select-top-info">
+          <h3>{{fieldTitle}}</h3>
+          <span (click)="onShowPopup()"><i class="fa fa-xmark"></i></span>
+        </div>
+        <div class="search-box">
+          <div class="search-icon">
+            <span (click)="onSearch(search.value)"><i class="fa fa-search"></i></span>
+          </div>
+          <div class="search-input">
+            <input type="text" #search placeholder="Search..." (input)="onSearch(search.value)">
+          </div>
+          <div class="search-icon">
+            <span (click)="clearInput()"><i *ngIf="isClear === true" class="fa fa-xmark"></i></span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="search-select-body">
+        <ul>
+          <li *ngFor="let data of items1" (click)="onSelectValue(data)"><label for="{{itemTextField ? data[itemTextField] : data}}"><input
+            name="{{fieldTitle}}" id="{{itemTextField ? data[itemTextField] : data}}" type="radio" [checked]="selectedValue?.name === (itemTextField ? data?.name : data)"> {{itemTextField ? data[itemTextField] : data}}</label></li>
+        </ul>
+      </div>
+    </div>
+  </div><!--- END SEARCH SELECT POP-->
+</div>

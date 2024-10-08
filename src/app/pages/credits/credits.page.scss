@@ -1,0 +1,107 @@
+@import'../../../theme/stylesheets/variables';
+
+.header {
+    z-index: 11;
+    padding: 10px 15px;
+    background-color: $color-white;
+
+    .header-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+
+        .logo {
+            h3 {
+                color: $color-primary;
+                font-family: $font-en-montserrat;
+                text-transform: uppercase;
+                font-size: 20px;
+                line-height: 20px;
+                font-weight: 700;
+            }
+        }
+
+        .notification {
+            img {
+                width: 40px;
+            }
+        }
+    }
+}
+
+.all-credit {
+    padding: 15px;
+
+    .all-credit-top {
+        padding-top: 40px;
+        margin-bottom: 35px;
+        text-align: center;
+
+        img {
+            max-width: 65px;
+            width: 100%;
+            margin: 0px auto 20px auto;
+        }
+
+        h3 {
+            color: #121212;
+            font-family: $font-en-montserrat;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
+
+    .credit-main {
+        .credit-card {
+            padding-block: 20px;
+            text-align: center;
+
+            h3 {
+                color: #121212;
+                font-family: $font-en-montserrat;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 22px;
+            }
+
+            button {
+                background-color: $color-primary;
+                color: $color-white;
+                max-width: 200px;
+                width: 100%;
+                border: none;
+                outline: none;
+                font-family: $font-en-montserrat;
+                font-style: normal;
+                font-size: 18px;
+                list-style: 22px;
+                padding: 9px 15px;
+                border-radius: 30px;
+                text-transform: uppercase;
+                box-sizing: border-box;
+                margin-top: 15px;
+            }
+
+        }
+    }
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid rgb(255 255 255 / 0.5);
+    border-top-color: $color-white;
+    animation: rotate 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes rotate {
+    100% {
+        rotate: 360deg;
+    }
+}
